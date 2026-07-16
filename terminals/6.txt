@@ -1,0 +1,27 @@
+---
+pid: 27652
+cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
+command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run build 2>&1 | Select-Object -Last 20"
+started_at: 2026-07-16T17:49:41.270Z
+running_for_ms: 2185015  
+---
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    7.19 kB         239 kB
+├ ○ /_not-found                            998 B         103 kB
+├ ● /[module]                            2.26 kB         234 kB
+├   ├ /attendance
+├   ├ /shift
+├   ├ /overtime
+├   └ [+45 more paths]
+└ ƒ /employees/[id]                      2.77 kB         128 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/255-41622e0825f37f6a.js         46 kB
+  ├ chunks/4bd1b696-409494caf8c83275.js  54.2 kB
+  └ other shared chunks (total)          2.05 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

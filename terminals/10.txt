@@ -1,0 +1,32 @@
+---
+pid: 16400
+cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
+command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue; npm run build 2>&1 | Select-Object -Last 25"
+started_at: 2026-07-16T18:16:57.963Z
+running_for_ms: 550001   
+---
+   ▲ Next.js 15.5.20
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 8.5s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/2) ...
+ ✓ Generating static pages (2/2)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                         Size  First Load JS
+┌ ƒ /
+├ ƒ /_not-found                      0 B            0 B
+├ ƒ /[module]
+├ ƒ /employees/[id]
+├ ƒ /login
+└ ƒ /users                           0 B            0 B
++ First Load JS shared by all    27.9 kB
+  ├ chunks/webpack.js            27.9 kB
+  └ other shared chunks (total)      0 B
+
+
+ƒ  (Dynamic)  server-rendered on demand
+

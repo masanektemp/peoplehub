@@ -1,0 +1,57 @@
+---
+pid: 10000
+cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
+command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Start-Sleep -Seconds 1; npm run dev"
+started_at: 2026-07-16T18:20:39.373Z
+running_for_ms: 345009   
+---
+
+> msnc-peoplehub@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.20
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.122:3000
+
+ ✓ Starting...
+ ✓ Ready in 1934ms
+ ○ Compiling / ...
+ ✓ Compiled / in 6s (1817 modules)
+ GET / 200 in 6920ms
+ ✓ Compiled in 999ms (841 modules)
+ ✓ Compiled in 173ms (841 modules)
+ ✓ Compiled in 150ms (841 modules)
+ ○ Compiling /login ...
+ ✓ Compiled /login in 926ms (1812 modules)
+ GET /login 200 in 1036ms
+ GET / 200 in 42ms
+ GET / 200 in 24ms
+ GET / 200 in 27ms
+ ○ Compiling /users ...
+ ✓ Compiled /users in 767ms (1832 modules)
+ GET /users 200 in 887ms
+ ○ Compiling /[module] ...
+ ✓ Compiled /[module] in 712ms (1905 modules)
+ GET /automation 200 in 1411ms
+ GET /recruitment 200 in 37ms
+ ✓ Compiled in 247ms (864 modules)
+ GET /recruitment 200 in 168ms
+ ✓ Compiled in 199ms (864 modules)
+ GET /recruitment 200 in 30ms
+ ✓ Compiled in 1306ms (1919 modules)
+ GET /recruitment 200 in 140ms
+ ✓ Compiled in 413ms (1919 modules)
+ GET /recruitment 200 in 222ms
+ ✓ Compiled in 245ms (864 modules)
+ GET /recruitment 200 in 32ms
+ ✓ Compiled in 681ms (1919 modules)
+ GET /recruitment 200 in 63ms
+ ✓ Compiled in 950ms (1919 modules)
+ GET /recruitment 200 in 76ms
+ ✓ Compiled in 829ms (1919 modules)
+ GET /recruitment 200 in 75ms
+ ✓ Compiled in 143ms (864 modules)
+ GET /recruitment 200 in 190ms
+ ✓ Compiled in 217ms (864 modules)
+ GET /recruitment 200 in 34ms
+

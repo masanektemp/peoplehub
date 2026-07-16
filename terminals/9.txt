@@ -1,0 +1,31 @@
+---
+pid: 34664
+cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
+command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue; npm run build 2>&1 | Select-Object -Last 30"
+started_at: 2026-07-16T18:14:29.817Z
+running_for_ms: 700009   
+---
+
+> msnc-peoplehub@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.20
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 8.5s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/54) ...
+node.exe : TypeError: a[d] is not a function
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (TypeError: a[d] is not a function:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    at Object.c [as require] (C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr\.next\server\webpack-runtime.js:1:142)
+Error occurred prerendering page "/login". Read more: https://nextjs.org/docs/messages/prerender-error
+TypeError: a[d] is not a function
+    at Object.c [as require] (C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr\.next\server\webpack-runtime.js:1:142)
+Export encountered an error on /login/page: /login, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null

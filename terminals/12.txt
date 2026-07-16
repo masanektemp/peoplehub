@@ -1,0 +1,20 @@
+---
+pid: 23824
+cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
+command: "Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run dev"
+started_at: 2026-07-16T18:24:55.380Z
+running_for_ms: 85004    
+---
+
+> msnc-peoplehub@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.20
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.122:3000
+
+ ✓ Starting...
+ ✓ Ready in 1821ms
+ ○ Compiling /[module] ...
+ ✓ Compiled /[module] in 2.9s (1861 modules)
+ ✓ Compiled in 464ms (841 modules)

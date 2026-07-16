@@ -1,0 +1,40 @@
+---
+pid: 32780
+cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
+command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run build"
+started_at: 2026-07-16T17:47:32.276Z
+running_for_ms: 2315012  
+---
+
+> msnc-peoplehub@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.20
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 4.8s
+   Linting and checking validity of types ...
+
+./src/lib/modules.ts
+15:3  Warning: 'Globe' is defined but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/52) ...
+Error occurred prerendering page "/mobile". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function, displayName: ...}
+                          ^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1215887126'
+}
+Export encountered an error on /[module]/page: /mobile, exiting the build.
+Error occurred prerendering page "/digital-file". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function, displayName: ...}
+                          ^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1215887126'
+}
+Export encountered an error on /[module]/page: /digital-file, exiting the build.
+ ⨯ Next.js build worker exited with code: 1 and signal: null
