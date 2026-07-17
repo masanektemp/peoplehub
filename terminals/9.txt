@@ -3,7 +3,7 @@ pid: 34664
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
 command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue; npm run build 2>&1 | Select-Object -Last 30"
 started_at: 2026-07-16T18:14:29.817Z
-running_for_ms: 700009   
+running_for_ms: 6725003  
 ---
 
 > msnc-peoplehub@0.1.0 build

@@ -24,6 +24,10 @@
 logs/
 .env.production.local
 
+# UAT feedback uploads (screenshots + items)
+/data/feedback/screenshots/
+/data/feedback/items.json
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -36,3 +40,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.aider*

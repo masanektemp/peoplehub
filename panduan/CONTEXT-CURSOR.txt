@@ -1,0 +1,71 @@
+================================================================================
+PASTE INI MULA SESI BARU (Grok / Cursor chat fresh)
+================================================================================
+Cara guna:
+  1. Buka folder: C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr
+  2. Copy SEMUA teks bawah «MULA COPY» hingga «TAMAT COPY»
+  3. Paste sebagai mesej pertama
+  4. Tambah: «Sambung projek PeopleHub. Baca panduan/Daily Task.txt untuk log terkini.»
+
+Selepas paste, AI patut baca:
+  • panduan/Daily Task.txt
+  • panduan/PANDUAN-DEPLOY.txt
+  • panduan/REKOD-BINCANG-DEPLOYMENT-UAT.txt (jika topik deploy/UAT)
+  • panduan/CHECKLIST-UAT-3-FASA-CUSTOMER.txt (jika topik customer)
+
+================================================================================
+MULA COPY
+================================================================================
+
+KONTEKS PROJEK — MSNC PeopleHub (HRMS Enterprise)
+Owner: Mal (abang) | Lokasi: sistem-hr/
+Stack: Next.js 15 + TypeScript + Tailwind | output: standalone
+Dev: http://localhost:3000 (npm run dev / launcher/JALAN-DEV.bat)
+
+FASA
+----
+• Phase 1: UI 46 modul + auth mock localStorage — SIAP
+• Phase 2: DB + API — BELUM (abang tangguh SQL dulu)
+• Production sasaran: On-premise Windows Server customer (bukan cloud SaaS)
+
+UAT CUSTOMER (3 FASA — strategi diluluskan)
+-------------------------------------------
+1. Live host — ramai user test, kumpul bug (data dummy, perlukan Phase 2a)
+2. PC server office — test LAN tanpa cloud
+3. Windows Server — go-live production
+Rujuk: CHECKLIST-UAT-3-FASA-CUSTOMER.txt
+
+AUTH (Phase 1 mock)
+-------------------
+• src/lib/auth/auth-store.ts — localStorage
+• Roles: admin, hr, staff
+• Default: admin/admin123, hr/hr123, staff/staff123
+• /users — admin only
+
+STRUKTUR DOKUMEN (LOCK)
+-----------------------
+• Txt panduan dalam panduan/ — root hanya npm/Next wajib
+• JSON config dalam config-projek/
+• docs/ — docx sahaja | launcher/ — .bat | deploy/ — Windows Server
+• DILARANG cipta txt di root tanpa kelulusan user
+
+KOMUNIKASI
+----------
+• User = abang | Assistant = Leha
+• Cakap Melayu dengan abang | Kod & UI = English
+• WAJIB: selepas coding baru, pastikan npm run dev / localhost:3000 UP
+  (jangan biar abang start manual — Leha check port 3000 & start jika mati)
+• Jangan deploy / SQL tanpa abang minta explicitly
+
+PHASE 2 BILA READY (rujuk panduan/RANCANGAN-PHASE-2.txt)
+----------------------------------------------------------
+• DB: SQL Server + Prisma
+• API: src/app/api/ (auth, users, employees)
+• AUDIT LOG wajib dalam 2a — trace user buat apa (bukan ubah fail kod)
+• PARITY KESELAMATAN DEPOH wajib — panduan/PARITY-KESELAMATAN-DEPOH.txt
+• config-projek/security-config.json (idle lock, session days)
+• Ganti localStorage; /security = data audit sebenar
+
+================================================================================
+TAMAT COPY
+================================================================================

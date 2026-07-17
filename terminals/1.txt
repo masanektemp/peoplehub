@@ -3,7 +3,7 @@ pid: 12736
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
 command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm install"
 started_at: 2026-07-16T17:33:55.559Z
-running_for_ms: 3130000  
+running_for_ms: 9160000  
 ---
 npm warn deprecated recharts@2.15.4: 1.x and 2.x branches are no longer active. Bump to Recharts v3 to receive latest features and bugfixes. See https://github.com/recharts/recharts/wiki/3.0-migration-guide
 

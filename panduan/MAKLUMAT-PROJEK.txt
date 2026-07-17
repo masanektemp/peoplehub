@@ -1,0 +1,14 @@
+MSNC PEOPLEHUB — MAKLUMAT PROJEK
+=================================
+
+Sistem HRMS Enterprise berdasarkan Cadangan_Sistem_HRMS_Enterprise.docx.
+UI: dashboard, Employee 360°, AI Copilot.
+
+FASA 1 (SIAP)
+  • Dashboard, 46 modul, auth mock, user management
+  • Dev: launcher\JALAN-DEV.bat
+
+FASA 2 (BELUM)
+  • Database + API on-premise
+
+Rujuk: PANDUAN-DEPLOY.txt

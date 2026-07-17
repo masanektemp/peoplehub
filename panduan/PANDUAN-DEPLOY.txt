@@ -1,0 +1,122 @@
+DEPLOYMENT, STRUKTUR & UAT — MSNC PEOPLEHUB
+=============================================
+
+Dikemas kini: 17 Julai 2026
+Lokasi projek: C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr
+
+================================================================================
+1. STRUKTUR FOLDER (LOCK)
+================================================================================
+
+  sistem-hr/
+  ├── README.md                             — pintasan ringkas (root bersih)
+  ├── package.json                          — WAJIB root (npm)
+  ├── package-lock.json                     — WAJIB root (npm)
+  ├── tsconfig.json                         — WAJIB root (Next.js)
+  ├── next.config.ts                        — WAJIB root (Next.js)
+  ├── next-env.d.ts                         — WAJIB root (Next.js)
+  ├── postcss.config.mjs                    — WAJIB root (Tailwind)
+  ├── .gitignore
+  │
+  ├── panduan/                              — SEMUA txt dokumentasi (BACA SINI)
+  │     PANDUAN-DEPLOY.txt, Daily Task.txt, CONTEXT-CURSOR.txt, ...
+  ├── config-projek/                        — JSON & config sistem (JANGAN PADAM)
+  ├── config-tetapan/                       — URL host, deploy info (txt)
+  ├── docs/                                   — docx rujukan SAHAJA
+  ├── scripts/                                — util PC
+  ├── launcher/                               — .bat dev/build  ← JALAN SISTEM
+  ├── deploy/                                 — Windows Server production
+  ├── snapshot/                               — zip backup
+  └── src/                                    — MASTER KOD Next.js
+
+  ROOT BERSIH — hanya fail wajib npm/Next + README pendek.
+  Txt panduan → panduan/ | JSON config → config-projek/
+  TIADA txt dokumentasi dalam src/ atau deploy/.
+
+================================================================================
+2. FAIL .TXT YANG SAH (senarai penuh)
+================================================================================
+
+  panduan/
+  • PANDUAN-DEPLOY.txt
+  • Daily Task.txt
+  • CONTEXT-CURSOR.txt
+  • REKOD-BINCANG-DEPLOYMENT-UAT.txt
+  • CHECKLIST-UAT-3-FASA-CUSTOMER.txt
+  • MAKLUMAT-PROJEK.txt
+  • README.txt
+
+  config-tetapan/
+  • LINK-HOST.txt
+  • deploy-info.txt
+
+  config-projek/ (JSON — JANGAN PADAM)
+  • manifest-fail-penting.json
+  • auth-defaults.json, app-settings.json, env.example
+  • eslint.config.mjs, README.txt
+
+  ROOT — fail wajib npm/Next (JANGAN PADAM)
+  • package.json, package-lock.json, tsconfig.json
+  • next.config.ts, next-env.d.ts, postcss.config.mjs
+  • README.md, .gitignore
+
+  DILARANG cipta txt baru di root atau src/ tanpa kelulusan user
+  Txt baharu → letak dalam panduan/
+
+================================================================================
+3. PRODUCTION vs UTIL
+================================================================================
+
+  NAIK KE SERVER CUSTOMER
+  • src/, package.json, next.config.ts
+  • Hasil build: .next/standalone
+  • deploy/
+
+  TIDAK DEPLOY
+  • panduan/, scripts/, launcher/, docs/, snapshot/
+  • config-tetapan/, config-projek/ (vendor reference)
+
+================================================================================
+4. FASA PROJEK
+================================================================================
+
+  PHASE 1 (SIAP) — UI 46 modul, auth mock localStorage
+  PHASE 2 (BELUM) — SQL Server + API + AUDIT LOG (rujuk RANCANGAN-PHASE-2.txt)
+  UAT 3 FASA — rujuk CHECKLIST-UAT-3-FASA-CUSTOMER.txt
+
+================================================================================
+5. BUILD & JALANKAN
+================================================================================
+
+  Development:
+    launcher\JALAN-DEV.bat
+    atau: npm run dev
+
+  Production build:
+    launcher\BUILD-PRODUCTION.bat
+
+  Mock users: config-projek/auth-defaults.json
+    admin / admin123  |  hr / hr123  |  staff / staff123
+
+================================================================================
+6. LOG HARIAN
+================================================================================
+
+  Fail: panduan/Daily Task.txt — append di PALING BAWAH bila «kerja siap»
+
+================================================================================
+7. RUJUKAN CEPAT
+================================================================================
+
+  Panduan utama        : panduan/PANDUAN-DEPLOY.txt
+  Rancangan Phase 2    : panduan/RANCANGAN-PHASE-2.txt
+  Parity security Depoh: panduan/PARITY-KESELAMATAN-DEPOH.txt
+  Rekod bincang UAT    : panduan/REKOD-BINCANG-DEPLOYMENT-UAT.txt
+  Checklist customer   : panduan/CHECKLIST-UAT-3-FASA-CUSTOMER.txt
+  Sesi AI baru         : panduan/CONTEXT-CURSOR.txt
+  Fail kritikal (JSON) : config-projek/manifest-fail-penting.json
+  URL host             : config-tetapan/LINK-HOST.txt
+
+================================================================================
+AKHIR PANDUAN
+================================================================================

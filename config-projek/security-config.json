@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "note": "Template ikut Depoh security-config.js — nilai boleh ubah per customer",
+  "idleLockPcMinutes": 60,
+  "idleLockMobileMinutes": 120,
+  "sessionMaxDays": 7,
+  "maxDevicesPerUser": 2,
+  "maxPcPerUser": 1,
+  "maxMobilePerUser": 1,
+  "sessionCheckIntervalMinutes": 5,
+  "idleCheckIntervalSeconds": 30,
+  "enforceDeviceLimits": false,
+  "passwordMinLength": 8,
+  "requireMustChangePassOnFirstLogin": true,
+  "rememberUsernameOnly": true,
+  "auditSecurityEvents": true
+}

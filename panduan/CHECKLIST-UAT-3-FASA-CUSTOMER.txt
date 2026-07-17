@@ -1,0 +1,202 @@
+================================================================================
+MSNC PEOPLEHUB — CHECKLIST UAT & DEPLOYMENT (3 FASA)
+Untuk penjelasan kepada customer / IT / pengurusan HR
+Dikemas kini: 17 Julai 2026
+Lokasi: sistem-hr/CHECKLIST-UAT-3-FASA-CUSTOMER.txt
+================================================================================
+
+GUNA FAIL INI UNTUK:
+  • Meeting jualan / kick-off projek
+  • Jelaskan kenapa ada 3 pusingan ujian sebelum go-live
+  • Sign-off setiap fasa sebelum terus ke fasa seterusnya
+  • Elak salah faham: cloud UAT ≠ production data
+
+================================================================================
+RINGKASAN 3 FASA (1 MINIT UNTUK CUSTOMER)
+================================================================================
+
+  FASA 1 — UAT Cloud (Live Host)
+    → Ramai staf test serentak, kumpul bug & cadangan modul
+    → Data dummy sahaja (bukan data HR sebenar)
+    → Abang/vendor repair cepat tanpa perlu datang office
+
+  FASA 2 — UAT On-Premise (PC Server Office)
+    → Sistem jalan dalam LAN office customer sahaja
+    → Tiada data naik internet — customer rasa operasi sebenar
+    → IT department boleh semak firewall, akses, kelajuan
+
+  FASA 3 — Go-Live (Windows Server Production)
+    → Server rasmi, backup harian, auto-start, dokumentasi serah
+    → Data HR production bermula (atau migrasi terkawal dari sistem lama)
+
+  Prinsip: Puas hati Fasa 1 → baru Fasa 2 → puas hati Fasa 2 → baru Fasa 3
+
+================================================================================
+DIAGRAM ALIR
+================================================================================
+
+  [Fasa 1: URL internet]  →  bug fix & polish  →  SIGN-OFF 1
+           ↓
+  [Fasa 2: PC server LAN]  →  test office  →  SIGN-OFF 2
+           ↓
+  [Fasa 3: Windows Server]  →  operasi harian  →  SIGN-OFF GO-LIVE
+
+================================================================================
+FASA 1 — UAT CLOUD (LIVE HOST) — FEEDBACK PERTAMA
+================================================================================
+
+TUJUAN
+  □ Kumpul maklum balas fungsi: bug, error, modul yang belum wujud
+  □ Semua peranan test: Admin, HR Manager, Staff
+  □ UI/UX dan aliran kerja disahkan sebelum pasang di office
+
+SYARAT TEKNIKAL (vendor siapkan)
+  □ Sistem dengan database & API sebenar (bukan demo browser sahaja)
+  □ URL akses + HTTPS
+  □ Akaun ujian untuk setiap peranan
+  □ Data SAMPLE / DUMMY — bukan IC, gaji, atau rekod perubatan sebenar
+  □ Polisi PDPA: customer faham data UAT akan dibuang atau tidak dipindah ke prod
+
+CUSTOMER PERLU SEDIAKAN
+  □ Senarai 5–30 penguji (nama, peranan, email)
+  □ Window ujian (cadangan: 2–6 minggu)
+  □ Satu orang PIC HR + satu PIC IT untuk kumpul feedback
+  □ Saluran hantar isu: borang dalam sistem / email / Excel (vendor tetapkan)
+
+SEMASA UJIAN — CHECKLIST PENGuji
+  □ Boleh login & logout
+  □ Role betul: staff tak nampak menu admin
+  □ Modul yang kerap guna boleh dibuka tanpa error
+  □ Laporan / export (jika ada) berfungsi
+  □ Catat: "Modul X perlu field Y" / "Butang Z tak berfungsi"
+  □ Catat: peranti & browser (Chrome / Edge, desktop / tablet)
+
+VENDOR (ABANG) SEMasa FASA 1
+  □ Log error server dimonitor
+  □ Bug kritikal fix dalam SLA dipersetujui (cth. 24–72 jam)
+  □ Release note setiap kemas kini ("apa yang berubah")
+  □ Senarai isu ditutup atau ditangguh ke fasa kemudian
+
+TAMAT FASA 1 — SIGN-OFF (customer tick)
+  □ Senarai bug kritikal = 0 (atau ada pengecualian bertulis)
+  □ Senarai modul "must-have" untuk go-live dipersetujui
+  □ Pengurusan setuju terus ke Fasa 2 (UAT on-premise)
+  □ Tarikh sign-off: _______________  Nama PIC: _______________
+
+================================================================================
+FASA 2 — UAT ON-PREMISE (PC SERVER DALAM OFFICE)
+================================================================================
+
+TUJUAN
+  □ Sahkan sistem jalan dalam rangkaian office — tanpa bergantung cloud
+  □ IT customer validate: IP dalaman, firewall, akses staf
+  □ Ujian kedua selepas semua pembetulan dari Fasa 1
+
+SETUP (vendor pasang di site atau remote guide)
+  □ 1 unit PC/VM sebagai server UAT (Windows 10/11 Pro atau Windows Server)
+  □ PeopleHub (Node.js) + SQL Server Express pada server yang sama atau berasingan
+  □ Akses staf: http://[IP-dalaman] atau nama host dalaman (cth. hr-uat.office)
+  □ Firewall: port hanya untuk LAN office (bukan internet terbuka)
+
+CUSTOMER PERLU SEDIAKAN
+  □ 1 PC/server untuk UAT (spec minimum vendor beri)
+  □ Akses LAN untuk PC penguji
+  □ IT buka port / DNS dalaman jika perlu
+  □ Senarai penguji (boleh sama atau subset Fasa 1)
+
+PERBEZAAN DENGAN FASA 1
+  □ Tiada URL public internet untuk operasi harian UAT
+  □ Data masih UAT — boleh reset sebelum Fasa 3
+  □ Kelajuan & pengalaman = lebih hampir production sebenar
+
+SEMASA UJIAN — CHECKLIST
+  □ 3+ PC berbeza akses serentak tanpa konflik data
+  □ Tambah user di admin → nampak di PC lain (data kongsi)
+  □ Restart server → sistem auto boleh akses semula (jika Windows Service dipasang)
+  □ Backup manual satu kali berjaya (uji restore jika IT mahu)
+  □ Internet office dimatikan (optional) — sistem masih boleh guna dalam LAN
+
+TAMAT FASA 2 — SIGN-OFF
+  □ IT terima setup on-premise
+  □ HR puas hati aliran kerja utama
+  □ Tiada isu blok untuk go-live
+  □ Tarikh sign-off: _______________  Nama PIC: _______________
+
+================================================================================
+FASA 3 — GO-LIVE (WINDOWS SERVER PRODUCTION)
+================================================================================
+
+TUJUAN
+  □ Operasi HR harian pada server rasmi customer
+  □ Backup, keselamatan, dan dokumentasi serah projek
+
+SETUP PRODUCTION
+  □ Windows Server (versi disokong IT customer)
+  □ SQL Server (Express atau Standard — ikut saiz organisasi)
+  □ PeopleHub sebagai Windows Service + IIS reverse proxy (optional)
+  □ Backup automatik harian + prosedur restore bertulis
+  □ Akaun production — bukan password default UAT
+  □ Migrasi data dari sistem lama (jika ada) — jadual & UAT import
+
+CUSTOMER PERLU SEDIAKAN
+  □ Server production + lesen Windows/SQL (jika perlu)
+  □ Polisi backup & siapa contact bila down
+  □ Senarai user production + peranan
+  □ Kelulusan pengurusan untuk tarikh go-live
+
+SEMASA GO-LIVE — CHECKLIST
+  □ Latihan 1–3 sesi (admin, HR, staff)
+  □ Manual ringkas / SOP diserahkan
+  □ Hotline atau AMC (Annual Maintenance Contract) dipersetujui
+  □ Data UAT cloud & PC UAT tidak bercampur dengan production (atau migrasi terkawal)
+
+TAMAT FASA 3 — SIGN-OFF GO-LIVE
+  □ Sistem production stabil X hari (cth. 5–14 hari)
+  □ Serah milik dokumentasi & kredensial kepada IT customer
+  □ Tarikh go-live: _______________  Nama PIC: _______________
+
+================================================================================
+JADUAL ANGGARAN (BOLEH LARAS IKUT PROJEK)
+================================================================================
+
+  Fasa 1 UAT Cloud .............. 2–6 minggu
+  Pembetulan antara fasa ........ 1–3 minggu
+  Fasa 2 UAT PC Office .......... 2–4 minggu
+  Persediaan Fasa 3 ............. 1–2 minggu
+  Stabilisasi go-live ........... 1–2 minggu
+
+================================================================================
+SOALAN LAZIM CUSTOMER (JAWAPAN RINGKAS)
+================================================================================
+
+Q: Kenapa tak terus pasang server office?
+A: Fasa 1 cloud memudahkan ramai orang test serentak dan vendor baiki bug
+   cepat. Fasa 2 & 3 pastikan data kekal dalam office.
+
+Q: Data Fasa 1 selamat?
+A: Guna data dummy. Jangan masukkan data peribadi sebenar semasa UAT cloud.
+
+Q: Boleh guna tanpa internet?
+A: Fasa 2 & 3 — ya, dalam LAN office. Fasa 1 perlukan internet untuk akses URL.
+
+Q: Laptop vendor cukup tak untuk semua staf test?
+A: Tidak — satu laptop = satu penonton. UAT perlukan URL atau server kongsi.
+
+Q: HTML ke, Node ke, sama je ke?
+A: Yang penting ada server + database supaya semua staf guna data sama.
+
+================================================================================
+LAMPIRAN — PERANAN & AKAUN UJIAN (ISI SEMASA PROJEK)
+================================================================================
+
+  Admin UAT      : _______________  /  password: _______________
+  HR UAT         : _______________  /  password: _______________
+  Staff UAT      : _______________  /  password: _______________
+
+  URL Fasa 1     : _______________
+  IP/Host Fasa 2 : _______________
+  Host Fasa 3    : _______________
+
+================================================================================
+AKHIR FAIL
+================================================================================

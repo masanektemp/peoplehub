@@ -3,7 +3,7 @@ pid: 5476
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
 command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run deploy:build 2>&1 | Select-Object -Last 25"
 started_at: 2026-07-16T17:59:06.515Z
-running_for_ms: 1620013  
+running_for_ms: 7650013  
 ---
    Generating static pages (39/52) 
  ✓ Generating static pages (52/52)

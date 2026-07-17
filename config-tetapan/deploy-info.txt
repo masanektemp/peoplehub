@@ -1,0 +1,27 @@
+MAKLUMAT DEPLOY — MSNC PEOPLEHUB
+================================
+Dikemas kini: 17 Julai 2026
+
+STACK PRODUCTION
+----------------
+  App      : Next.js 15 standalone (Node.js)
+  Database : SQL Server (Express atau Standard) — Phase 2
+  OS       : Windows Server customer (on-premise)
+  Proxy    : IIS reverse proxy (optional) — deploy/setup-iis.ps1
+  Service  : Windows Service via NSSM — deploy/install-service.ps1
+
+SCRIPT BUILD
+------------
+  launcher\BUILD-PRODUCTION.bat
+  deploy\build-production.bat
+  deploy\start-production.bat
+
+BELUM DEPLOY
+------------
+  Tiada production URL lagi.
+  Phase 1 = dev localhost sahaja.
+
+RUJUKAN
+-------
+  PANDUAN-DEPLOY.txt
+  CHECKLIST-UAT-3-FASA-CUSTOMER.txt

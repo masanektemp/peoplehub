@@ -3,7 +3,7 @@ pid: 34136
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
 command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run dev"
 started_at: 2026-07-16T17:49:20.475Z
-running_for_ms: 2220004  
+running_for_ms: 8250006  
 ---
 
 > msnc-peoplehub@0.1.0 dev

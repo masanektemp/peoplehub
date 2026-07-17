@@ -1,0 +1,173 @@
+================================================================================
+RANCANGAN PHASE 2 — MSNC PEOPLEHUB
+Untuk rujukan bila abang ready (SQL + API + audit)
+Dikemas kini: 17 Julai 2026
+================================================================================
+
+BACA INI BILA:
+  • Nak mula Phase 2
+  • Lupa apa yang perlu dibina selain DB
+  • Customer tanya «boleh trace siapa buat apa?»
+
+Rujuk juga: PANDUAN-DEPLOY.txt, REKOD-BINCANG-DEPLOYMENT-UAT.txt
+
+================================================================================
+1. SUSUNAN KERJA PHASE 2 (URUTAN)
+================================================================================
+
+  2a — Asas (WAJIB DULU)
+    □ SQL Server + Prisma schema (users, sessions, audit_log)
+    □ API auth (login, logout, validate, change-password)
+    □ PARITY KESELAMATAN DEPOH (lihat §7 + PARITY-KESELAMATAN-DEPOH.txt)
+    □ API users (CRUD)
+    □ AUDIT LOG asas (lihat §3) — serentak 2a, jangan tangguh
+    □ Idle lock + session max days (config-projek/security-config.json)
+    □ Ganti localStorage → httpOnly cookie + server session
+    □ Password hash (bcrypt) — bukan plain text
+
+  2b — Data HR
+    □ Jadual employees + API
+    □ 1 modul hidup (cth. leave atau attendance)
+    □ Audit log untuk modul tersebut
+
+  2c — Batch modul lain ikut spec docx
+  2d — UAT cloud (Fasa 1 customer) → PC office → Windows Server
+
+================================================================================
+2. DATABASE — LOKASI
+================================================================================
+
+  Production : SQL Server atas Windows Server customer
+  Dalam kod  : prisma/schema.prisma + prisma/migrations/
+  Env        : config-projek/env.example → .env.local / server
+
+  API        : src/app/api/
+  DB client  : src/lib/db/client.ts
+
+================================================================================
+3. AUDIT LOG — WAJIB MASUK PHASE 2a (KEPUTUSAN 17 Jul 2026)
+================================================================================
+
+TUJUAN
+  Trace tindakan USER dalam sistem HR (bukan ubah fail kod projek).
+  Siapa buat apa, bila, pada rekod/modul mana.
+
+BUKAN SCOPE AUDIT APP
+  • Ubah fail .ts / .json dalam folder projek → itu GIT (developer)
+  • Log Cursor / Daily Task.txt → log kerja dev, bukan user app
+
+JADUAL: audit_log (cadangan)
+  id            — UUID / auto increment
+  created_at    — datetime (UTC atau office TZ)
+  user_id       — siapa
+  username      — snapshot nama login
+  action        — login | logout | create | update | delete | view | export
+  module        — users | employees | leave | security | ...
+  target_id     — ID rekod terjejas (optional)
+  target_label  — ringkasan (cth. "EMP001", "john.doe")
+  details       — JSON: field berubah, nilai lama/baru (optional)
+  ip_address    — dari request header
+  user_agent    — browser (optional)
+
+PERISTIWA WAJIB REKOD (MINIMUM 2a)
+  □ Login berjaya / gagal
+  □ Logout
+  □ Create / update / delete user (/users)
+  □ Reset password / role change
+  □ (2b) Create / update employee
+
+PERISTIWA ELok (2b+)
+  □ Approve / reject leave, claim, OT
+  □ Export laporan / cetak PDF
+  □ Akses modul sensitif (payroll, medical)
+
+API
+  POST internal sahaja — src/lib/audit/log-event.ts
+  GET  /api/audit       — admin sahaja, pagination + filter
+
+UI
+  Modul /security — ganti mock table dengan data audit_log sebenar
+  Filter: user, modul, tarikh, action
+  Admin only
+
+PATTERN RUJUKAN
+  Sistem Depoh: audit-db.js + jadual audit_log (D1)
+  PeopleHub: sama konsep, guna SQL Server + Prisma
+
+KEKALAN DATA
+  Simpan dalam DB server — dikongsi semua PC
+  BUKAN localStorage (Phase 1 mock Security module adalah palsu)
+
+================================================================================
+4. AUTH & SESSION (RINGKAS)
+================================================================================
+
+  □ httpOnly cookie session (bukan password dalam browser)
+  □ Role: admin | hr | staff — API enforce, bukan UI sahaja
+  □ Phase 1 mock: config-projek/auth-defaults.json → migrate ke DB seed
+  □ Config: config-projek/security-config.json (idle, session days, device limits)
+
+================================================================================
+7. PARITY KESELAMATAN DEPOH (WAJIB — keputusan 17 Jul 2026)
+================================================================================
+
+  Abang minta: login & seluruh security Depoh ada dalam PeopleHub.
+
+  Senarai penuh + status tick:
+    panduan/PARITY-KESELAMATAN-DEPOH.txt
+
+  Ringkas — mesti ada Phase 2a:
+    • Login server-side + password hash
+    • Akaun active / mustChangePass / tukar kata laluan
+    • Jadual sessions (token, expires, device) — macam Depoh active_sessions
+    • Idle lock (PC 60 min, mobile 120 min) + session max 7 hari
+    • Validate sesi berkala; logout invalidate token
+    • Audit: login berjaya/gagal, logout, idle-logout
+    • Role guard (admin/hr/staff) di API + AuthGuard
+    • Modul /security — data audit sebenar (bukan mock)
+
+  Phase 2b:
+    • Admin revoke sesi user lain
+    • Admin senarai sesi aktif
+
+  Penambahbaikan atas Depoh (HRMS):
+    • Remember me = username sahaja (Depoh simpan password — elakkan)
+    • passwordMinLength 8 (config security-config.json)
+
+  Tidak perlu (khusus Depoh):
+    • Portal A/B access (towing)
+
+  Sasaran kod PeopleHub (bila implement):
+    src/lib/auth/          — server auth helpers
+    src/lib/security/      — config, session guard
+    src/hooks/useSessionGuard.ts
+    src/app/api/auth/      — login, logout, validate, change-password
+    src/app/change-password/page.tsx
+
+================================================================================
+5. UAT 3 FASA (INGAT)
+================================================================================
+
+  Fasa 1 live host  — perlukan 2a (DB + API + audit) + data dummy
+  Fasa 2 PC office  — LAN test
+  Fasa 3 Windows Server — go-live
+
+  Checklist: CHECKLIST-UAT-3-FASA-CUSTOMER.txt
+
+================================================================================
+6. STATUS CHECKLIST PHASE 2
+================================================================================
+
+  [ ] SQL Server / Prisma (users, sessions, audit_log)
+  [ ] /api/auth/* + parity Depoh (PARITY-KESELAMATAN-DEPOH.txt)
+  [ ] security-config.json + idle lock + useSessionGuard
+  [ ] /change-password + mustChangePass
+  [ ] /api/users/*
+  [ ] audit_log + security events
+  [ ] /api/audit (admin) + /security UI sebenar
+  [ ] employees + modul HR pertama
+  [ ] UAT cloud host
+
+================================================================================
+AKHIR RANCANGAN — kemas kini fail ini bila keputusan baru
+================================================================================

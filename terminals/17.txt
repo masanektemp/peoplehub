@@ -1,0 +1,62 @@
+---
+pid: 13420
+cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
+command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run dev"
+started_at: 2026-07-17T06:32:24.235Z
+running_for_ms: 300012   
+---
+
+> msnc-peoplehub@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.20
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.122:3000
+
+ ✓ Starting...
+ ✓ Ready in 1808ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1911ms (1812 modules)
+ GET / 200 in 2575ms
+ ✓ Compiled in 681ms (843 modules)
+ ✓ Compiled in 166ms (843 modules)
+ ○ Compiling /[module] ...
+ ✓ Compiled /[module] in 622ms (1876 modules)
+ GET / 200 in 98ms
+ ✓ Compiled /feedback in 280ms (1892 modules)
+ GET /feedback 200 in 483ms
+ GET /favicon.ico 200 in 1488ms
+ GET / 200 in 46ms
+ ✓ Compiled in 139ms (859 modules)
+ GET / 200 in 167ms
+ ✓ Compiled in 192ms (859 modules)
+ GET / 200 in 137ms
+ ✓ Compiled in 154ms (859 modules)
+ GET / 200 in 30ms
+ GET /feedback 200 in 28ms
+ GET /favicon.ico 200 in 81ms
+ GET /feedback 200 in 31ms
+ ○ Compiling /employees/[id] ...
+ ✓ Compiled /employees/[id] in 868ms (1912 modules)
+ GET /employees/EMP001 200 in 1543ms
+ GET /favicon.ico 200 in 136ms
+ GET /feedback 200 in 31ms
+ GET /favicon.ico 200 in 57ms
+ ✓ Compiled in 846ms (1310 modules)
+ GET /feedback 200 in 127ms
+ GET /feedback 200 in 91ms
+ ✓ Compiled in 311ms (1310 modules)
+ GET /feedback 200 in 175ms
+ ✓ Compiled in 243ms (867 modules)
+ GET /feedback 200 in 174ms
+ ✓ Compiled in 198ms (867 modules)
+ GET /feedback 200 in 104ms
+ ✓ Compiled in 174ms (867 modules)
+ GET /feedback 200 in 31ms
+ ✓ Compiled / in 215ms (981 modules)
+ GET / 200 in 290ms
+ ✓ Compiled /[module] in 287ms (1046 modules)
+ GET /favicon.ico 200 in 582ms
+ GET / 200 in 302ms
+ GET /feedback 200 in 39ms
+ GET /favicon.ico 200 in 55ms

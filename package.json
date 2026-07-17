@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "start:prod": "node .next/standalone/server.js",
-    "lint": "next lint",
+    "lint": "eslint . --max-warnings 0 --config config-projek/eslint.config.mjs",
     "jalan": "next dev",
     "deploy:build": "npm run build && node scripts/windows/copy-standalone.js"
   },

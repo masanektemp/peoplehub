@@ -1,23 +1,7 @@
-﻿# MSNC PeopleHub — Sistem HRMS Enterprise
+# MSNC PeopleHub
 
-Sistem HRMS Enterprise berdasarkan cadangan dalam Cadangan_Sistem_HRMS_Enterprise.docx, dengan UI mengikut mockup dashboard, Employee 360°, dan AI Copilot.
+HRMS Enterprise — Next.js 15
 
-## Modul Tersedia (Fasa 1)
+**Run dev:** `launcher\JALAN-DEV.bat` or `npm run dev` → http://localhost:3000
 
-- **Dashboard Pintar** — kehadiran, MC, cuti, OT, KPI, birthday, kontrak tamat, claim approval
-- **Employee Profile 360°** — maklumat peribadi, timeline, digital employee file
-- **AI Copilot** — chat assistant dengan cadangan HR automatik
-- **AI Analytics** — burnout detection, high performer, turnover trend
-
-## Jalankan Projek
-
-```bash
-npm install
-npm run dev
-```
-
-Buka http://localhost:3000
-
-## Rujukan Spesifikasi
-
-Dokumen cadangan merangkumi 40 modul utama termasuk Attendance (GPS, Geofencing), Payroll (EPF, SOCSO, PCB), Recruitment ATS, AI OCR, Multi Company, Multi Language, dan SaaS-ready architecture.
+**Documentation:** [`panduan/PANDUAN-DEPLOY.txt`](panduan/PANDUAN-DEPLOY.txt)

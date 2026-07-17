@@ -1,14 +1,18 @@
 ---
-pid: 16400
+pid: 18000
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
-command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue; npm run build 2>&1 | Select-Object -Last 25"
-started_at: 2026-07-16T18:16:57.963Z
-running_for_ms: 6580009  
+command: "cd \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue; npm run build"
+started_at: 2026-07-16T19:47:59.867Z
+running_for_ms: 1115010  
 ---
+
+> msnc-peoplehub@0.1.0 build
+> next build
+
    ▲ Next.js 15.5.20
 
    Creating an optimized production build ...
- ✓ Compiled successfully in 8.5s
+ ✓ Compiled successfully in 7.6s
    Linting and checking validity of types ...
    Collecting page data ...
    Generating static pages (0/2) ...

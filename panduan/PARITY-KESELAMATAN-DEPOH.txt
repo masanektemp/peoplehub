@@ -1,0 +1,166 @@
+================================================================================
+PARITY KESELAMATAN — DEPOH → MSNC PEOPLEHUB
+Semua ciri login & security Depoh mesti ada dalam HRMS (Phase 2)
+Dikemas kini: 17 Julai 2026
+================================================================================
+
+RUJUKAN DEPOH (fail asal)
+  auth.js, auth-db.js, auth-sessions.js, session-manager.js
+  security-config.js, audit.js (auditLogSecurity)
+  cloudflare/src/sessions.js, schema-sessions.sql
+
+KONFIG PEOPLEHUB
+  config-projek/security-config.json
+  Rancangan implement: panduan/RANCANGAN-PHASE-2.txt §7
+
+================================================================================
+LEGENDA STATUS
+================================================================================
+
+  [P1]  Phase 1 sekarang — mock / tiada
+  [2a]  Mesti siap dalam Phase 2a (serentak login + DB)
+  [2b]  Phase 2b atau selepas
+  [—]   Tidak perlu HR (khusus Depoh sahaja)
+
+================================================================================
+A. LOGIN & AKAUN
+================================================================================
+
+  Ciri Depoh                              | HRMS    | Catatan implement
+  ----------------------------------------|---------|---------------------------
+  Login username + password               | [P1]    | [2a] POST /api/auth/login
+  Semak akaun aktif (aktif / active)      | [P1]    | [2a] DB field active
+  Login gagal → mesej generic             | [P1]    | [2a] jangan dedah user wujud
+  Login gagal → audit log                 | [—]     | [2a] audit login-gagal
+  Password hash (bukan plain text)        | [—]     | [2a] bcrypt di DB
+  mustChangePass → halaman tukar password | [—]     | [2a] /change-password
+  Tukar password sendiri (old + new)      | [—]     | [2a] API + min length
+  Remember me (Depoh: simpan user+pass)   | [—]     | [2a] HR: username SAHAJA*
+  Seed user dari config                   | [P1]    | [2a] auth-defaults.json → DB
+
+  * Penambahbaikan atas Depoh: jangan simpan password dalam localStorage
+
+================================================================================
+B. SESI & TOKEN (SERVER-SIDE)
+================================================================================
+
+  Ciri Depoh                              | HRMS    | Catatan implement
+  ----------------------------------------|---------|---------------------------
+  Token sesi server (active_sessions)     | [—]     | [2a] jadual sessions
+  expires_at (sessionMaxDays: 7)          | [—]     | [2a] config security-config
+  Validate token berkala (5 min)          | [—]     | [2a] useSessionGuard + API
+  Logout → invalidate token server        | [—]     | [2a] POST /api/auth/logout
+  httpOnly cookie / Bearer token          | [—]     | [2a] cookie preferred
+  device_id + device_type                 | [—]     | [2a] untuk had peranti
+  Had peranti (max PC/mobile)             | [—]     | [2a] optional enforce
+  Admin revoke sesi user lain             | [—]     | [2b] /api/auth/sessions
+  Sesi revoked → redirect + mesej         | [—]     | [2a] reason=revoked
+
+================================================================================
+C. IDLE LOCK & TAMAT SESI
+================================================================================
+
+  Ciri Depoh                              | HRMS    | Catatan implement
+  ----------------------------------------|---------|---------------------------
+  Idle lock PC (60 min)                   | [—]     | [2a] session-manager pattern
+  Idle lock mobile (120 min)              | [—]     | [2a] security-config.json
+  touchActivity (click, key, scroll)      | [—]     | [2a] React hook
+  Idle → logout + audit idle-logout       | [—]     | [2a] audit_log
+  Session max expired (7 hari)            | [—]     | [2a] isSessionMaxExpired
+  Mesej login: idle / revoked / expired   | [—]     | [2a] query ?reason=
+
+  Fail sasaran PeopleHub:
+    src/hooks/useSessionGuard.ts
+    src/lib/security/config.ts (baca security-config.json)
+
+================================================================================
+D. ROLE & AKSES (DEPOH → HR)
+================================================================================
+
+  Ciri Depoh                              | HRMS    | Pemetaan role
+  ----------------------------------------|---------|---------------------------
+  requireAuth (semua halaman)             | [P1]    | [2a] AuthGuard + middleware
+  requireAdmin                            | [P1]    | [2a] admin → /users
+  Role matrix modul                       | [—]     | [2a] staff/hr/admin API
+  Portal A/B access                       | [—]     | [—] khusus Depoh towing
+  Tak boleh padam admin terakhir          | [P1]    | [2a] API countAdmins
+  Nonaktifkan akaun (bukan padam)         | [P1]    | [2a] active=false
+
+  Role HRMS: admin | hr | staff (ganti staf/pengurusan/pentadbir Depoh)
+
+================================================================================
+E. AUDIT & LOG KESELAMATAN
+================================================================================
+
+  Ciri Depoh                              | HRMS    | Catatan
+  ----------------------------------------|---------|---------------------------
+  auditLogSecurity login-berjaya          | [—]     | [2a] audit_log
+  auditLogSecurity login-gagal            | [—]     | [2a]
+  auditLogSecurity logout                 | [—]     | [2a] + sendBeacon optional
+  auditLogSecurity idle-logout            | [—]     | [2a]
+  auditLogSecurity revoke-sesi            | [—]     | [2b]
+  Modul paparan audit (admin)             | [P1]    | [2a] /security data sebenar
+  IP + user agent dalam log               | [—]     | [2a] request headers
+  stampAuditActor (dibuatOleh)            | [—]     | [2b] rekod HR umum
+
+================================================================================
+F. MODUL UI /security (SPEK DOCX — LEBIH DARI DEPOH)
+================================================================================
+
+  Ciri dalam modules.ts (mock)            | Phase 2
+  ----------------------------------------|----------
+  Audit Trail / Audit Log                 | [2a] data DB
+  2FA                                     | [2c] TOTP optional
+  IP Restriction                          | [2c] allowlist office LAN
+  Encryption at rest                      | [2d] SQL Server TDE / backup
+  Backup status                           | [2d] integrasi deploy/ Windows
+
+  Minimum parity Depoh = A + B + C + D + E siap dalam 2a/2b.
+  2FA & IP restriction = tambahan enterprise selepas parity Depoh.
+
+================================================================================
+G. JADUAL DB TAMBAHAN (PRISMA — CADANGAN)
+================================================================================
+
+  users
+    + password_hash, must_change_pass, active, last_login_at
+
+  sessions (setara Depoh active_sessions)
+    id, token, user_id, device_id, device_type
+    created_at, expires_at, revoked, ip_address, user_agent
+
+  audit_log
+    (lihat RANCANGAN-PHASE-2.txt §3)
+
+================================================================================
+H. API ROUTES (CADANGAN)
+================================================================================
+
+  POST   /api/auth/login
+  POST   /api/auth/logout
+  POST   /api/auth/validate
+  POST   /api/auth/change-password
+  GET    /api/auth/session          — current user
+  GET    /api/auth/sessions         — admin: list user sessions
+  POST   /api/auth/sessions/revoke  — admin
+  GET    /api/audit                 — admin, filter security + modul
+  GET    /api/security/config       — idle/session settings (admin edit later)
+
+================================================================================
+I. CHECKLIST PARITY — TICK BILA SIAP
+================================================================================
+
+  [ ] security-config.json dibaca app
+  [ ] Login + hash + active check
+  [ ] mustChangePass + /change-password
+  [ ] Server sessions + cookie
+  [ ] Idle lock + validate interval
+  [ ] Logout + token revoke
+  [ ] Audit: login, gagal, logout, idle
+  [ ] Role enforce API + UI
+  [ ] /security module data sebenar
+  [ ] Admin revoke session (2b)
+
+================================================================================
+AKHIR — bila semua [2a] tick, PeopleHub ≥ parity keselamatan Depoh
+================================================================================

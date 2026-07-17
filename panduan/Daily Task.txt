@@ -1,0 +1,91 @@
+DAILY TASK — MSNC PeopleHub (HRMS)
+===================================
+Satu fail rujukan kerja harian. Entri baharu ditambah di BAWAH (jangan buat fail lain).
+Dev : http://localhost:3000
+
+Sesi baru / chat fresh → paste: panduan/CONTEXT-CURSOR.txt
+Strategi UAT penuh → panduan/REKOD-BINCANG-DEPLOYMENT-UAT.txt
+Panduan struktur → panduan/PANDUAN-DEPLOY.txt
+
+--------------------------------------------------------------------------------
+17 Julai 2026
+--------------------------------------------------------------------------------
+
+[1] Dokumentasi UAT 3 fasa
+    - CHECKLIST-UAT-3-FASA-CUSTOMER.txt (untuk customer)
+    - REKOD-BINCANG-DEPLOYMENT-UAT.txt (rujukan abang)
+
+[2] Susun semula struktur folder ikut rule depoh
+    - Txt panduan pindah ke root sistem-hr/ (buang dari docs/)
+    - Tambah PANDUAN-DEPLOY.txt, CONTEXT-CURSOR.txt, Daily Task.txt
+    - Tambah config-tetapan/, launcher/, snapshot/
+    - docs/ kekal untuk docx sahaja
+
+Status: SIAP — Phase 1 mock kekal; Phase 2 & SQL ditangguh
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | susunan config
+--------------------------------------------------------------------------------
+
+[1] Folder config-projek/ — JSON sistem
+    - manifest-fail-penting.json (senarai fail jangan padam)
+    - auth-defaults.json, app-settings.json, env.example
+    - eslint.config.mjs dipindah dari root
+
+[2] Root — kekal fail wajib npm/Next sahaja (didokumenkan dalam manifest)
+
+[3] default-users.ts baca dari config-projek/auth-defaults.json
+
+Status: SIAP
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | root bersih
+--------------------------------------------------------------------------------
+
+[1] Semua txt panduan pindah ke folder panduan/
+[2] Root tinggal fail wajib npm/Next + README pendek
+[3] jalan.bat buang — guna launcher/JALAN-DEV.bat
+
+Status: SIAP
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | rancangan audit log
+--------------------------------------------------------------------------------
+
+[1] Abang tanya: ada log trace user buat apa? — Phase 1: tidak (mock je)
+[2] Keputusan: audit log masuk Phase 2a
+[3] Fail baru: panduan/RANCANGAN-PHASE-2.txt (DB, API, audit, UAT)
+
+Status: SIAP — tunggu abang ready untuk coding Phase 2
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | parity security Depoh
+--------------------------------------------------------------------------------
+
+[1] Abang minta security login + keseluruhan security Depoh dalam HRMS
+[2] Fail: panduan/PARITY-KESELAMATAN-DEPOH.txt (checklist A–I)
+[3] Config: config-projek/security-config.json
+[4] Kemas kini RANCANGAN-PHASE-2.txt §7
+
+Status: SIAP — dokumentasi; implement Phase 2a bila ready
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | UAT Feedback module
+--------------------------------------------------------------------------------
+
+[1] Confirm: feedback tab was planned only — NOT deployed before
+[2] New: /feedback — send comment + screenshot (paste or attach)
+[3] Inbox for admin/hr — live list + view SS + status open/reviewing/done
+[4] Storage: data/feedback/ (server file) — shared when same Node server
+[5] API: GET/POST/PATCH /api/feedback + screenshot serve
+
+Status: SIAP — open /feedback after npm run dev
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | rule localhost always up
+--------------------------------------------------------------------------------
+
+[1] Abang: selepas coding baru, Leha mesti pastikan localhost UP (jangan biar abang up manual)
+[2] Direkod dalam CONTEXT-CURSOR.txt + .cursor/rules/docs-structure.mdc
+
+Status: SIAP

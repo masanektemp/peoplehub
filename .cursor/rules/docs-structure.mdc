@@ -1,0 +1,40 @@
+---
+description: Dokumentasi & struktur folder PeopleHub
+globs:
+alwaysApply: true
+---
+
+# MSNC PeopleHub — Rules Dokumen
+
+## Struktur LOCK
+
+- **Root** — hanya fail wajib npm/Next + README.md pendek
+- **panduan/** — SEMUA txt dokumentasi
+- **config-projek/** — JSON config sistem (manifest, auth-defaults, app-settings)
+- **config-tetapan/** — URL host, deploy info
+- **docs/** — docx rujukan sahaja
+- **src/** — kod sahaja
+- **launcher/** — .bat | **deploy/** — production scripts
+
+## Fail JSON
+
+- Config & data seed → **config-projek/**
+- Root JSON (package.json, tsconfig.json) — wajib npm/Next, **jangan pindah**
+
+## Larangan
+
+- Jangan cipta txt di root — guna **panduan/**
+- Jangan cipta txt dalam src/
+
+## Rujukan wajib
+
+1. panduan/PANDUAN-DEPLOY.txt
+2. panduan/Daily Task.txt
+3. config-projek/manifest-fail-penting.json
+
+## Komunikasi
+
+- Melayu dengan abang | English dalam kod/UI
+- **WAJIB:** selepas coding baru, pastikan `npm run dev` / `localhost:3000` **UP**
+  (check port 3000; start dev server jika mati — abang tak perlu start manual)
+- Phase 2 / SQL / deploy hanya bila user minta explicitly

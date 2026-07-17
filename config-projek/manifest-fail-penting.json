@@ -1,0 +1,105 @@
+{
+  "project": "msnc-peoplehub",
+  "updated": "2026-07-17",
+  "note": "Senarai fail kritikal — jangan padam tanpa rujuk PANDUAN-DEPLOY.txt",
+  "rootRequired": {
+    "description": "Wajib kekal di root — standard Node.js / Next.js (npm cari di sini)",
+    "files": [
+      {
+        "path": "package.json",
+        "deletable": false,
+        "reason": "Dependencies & npm scripts"
+      },
+      {
+        "path": "package-lock.json",
+        "deletable": false,
+        "reason": "Lock versi npm — konsisten install"
+      },
+      {
+        "path": "tsconfig.json",
+        "deletable": false,
+        "reason": "TypeScript — Next.js wajib di root"
+      },
+      {
+        "path": "next.config.ts",
+        "deletable": false,
+        "reason": "Konfig Next.js — wajib di root"
+      },
+      {
+        "path": "next-env.d.ts",
+        "deletable": false,
+        "reason": "Auto-generated types Next.js"
+      },
+      {
+        "path": "postcss.config.mjs",
+        "deletable": false,
+        "reason": "Tailwind/PostCSS — Next.js cari di root"
+      }
+    ]
+  },
+  "configProjek": {
+    "description": "Konfigurasi sistem & JSON data seed — folder rasmi config",
+    "folder": "config-projek/",
+    "files": [
+      {
+        "path": "config-projek/manifest-fail-penting.json",
+        "deletable": false,
+        "reason": "Senarai fail penting projek"
+      },
+      {
+        "path": "config-projek/auth-defaults.json",
+        "deletable": false,
+        "reason": "Mock users Phase 1 — sumber tunggal"
+      },
+      {
+        "path": "config-projek/app-settings.json",
+        "deletable": false,
+        "reason": "Tetapan app & company default"
+      },
+      {
+        "path": "config-projek/env.example",
+        "deletable": false,
+        "reason": "Template environment production"
+      },
+      {
+        "path": "config-projek/eslint.config.mjs",
+        "deletable": false,
+        "reason": "Konfig ESLint"
+      },
+      {
+        "path": "config-projek/security-config.json",
+        "deletable": false,
+        "reason": "Idle lock, session days — parity Depoh"
+      }
+    ]
+  },
+  "documentation": {
+    "description": "Txt panduan — folder panduan/",
+    "folder": "panduan/",
+    "files": [
+      "panduan/PANDUAN-DEPLOY.txt",
+      "panduan/Daily Task.txt",
+      "panduan/CONTEXT-CURSOR.txt",
+      "panduan/REKOD-BINCANG-DEPLOYMENT-UAT.txt",
+      "panduan/CHECKLIST-UAT-3-FASA-CUSTOMER.txt",
+      "panduan/MAKLUMAT-PROJEK.txt",
+      "panduan/RANCANGAN-PHASE-2.txt",
+      "panduan/PARITY-KESELAMATAN-DEPOH.txt",
+      "panduan/README.txt"
+    ]
+  },
+  "rootMinimal": {
+    "description": "Root projek — hanya fail wajib + README pendek",
+    "files": [
+      { "path": "README.md", "deletable": false, "reason": "Pintasan ke panduan/" }
+    ]
+  },
+  "deployUtil": {
+    "description": "Tidak deploy ke customer — util vendor",
+    "folders": ["config-tetapan/", "launcher/", "scripts/", "deploy/", "snapshot/", "docs/"]
+  },
+  "masterCode": {
+    "description": "Kod aplikasi production",
+    "folder": "src/"
+  }
+}

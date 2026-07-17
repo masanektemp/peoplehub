@@ -1,0 +1,38 @@
+{
+  "phase": 1,
+  "note": "Mock users for development — replace with database in Phase 2",
+  "users": [
+    {
+      "id": "usr-001",
+      "username": "admin",
+      "password": "admin123",
+      "name": "System Admin",
+      "email": "admin@msnc.com",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-002",
+      "username": "hr",
+      "password": "hr123",
+      "name": "KP KUP Shah",
+      "email": "hr@msnc.com",
+      "role": "hr",
+      "active": true
+    },
+    {
+      "id": "usr-003",
+      "username": "staff",
+      "password": "staff123",
+      "name": "John Doe",
+      "email": "john.doe@company.com",
+      "role": "staff",
+      "active": true
+    }
+  ],
+  "demoCredentials": [
+    { "role": "admin", "username": "admin", "password": "admin123" },
+    { "role": "hr", "username": "hr", "password": "hr123" },
+    { "role": "staff", "username": "staff", "password": "staff123" }
+  ]
+}

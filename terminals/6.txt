@@ -3,7 +3,7 @@ pid: 27652
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
 command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run build 2>&1 | Select-Object -Last 20"
 started_at: 2026-07-16T17:49:41.270Z
-running_for_ms: 2185015  
+running_for_ms: 8215000  
 ---
 
 Route (app)                                 Size  First Load JS

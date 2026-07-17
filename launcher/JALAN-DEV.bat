@@ -1,10 +1,10 @@
 @echo off
-title MSNC PeopleHub - HRMS Enterprise
-cd /d "%~dp0"
+title MSNC PeopleHub - Dev Server
+cd /d "%~dp0\.."
 echo.
 echo  ========================================
 echo   MSNC PeopleHub - HRMS Enterprise
-echo   Menjalankan semua modul...
+echo   Development server...
 echo  ========================================
 echo.
 if not exist "node_modules\" (

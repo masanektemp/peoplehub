@@ -1,0 +1,236 @@
+================================================================================
+REKOD BINCANG — STRATEGI DEPLOYMENT MSNC PEOPLEHUB
+Untuk rujukan abang (Mal) — jangan padam tanpa salin ke snapshot/
+Tarikh rekod: 17 Julai 2026
+Lokasi: sistem-hr/panduan/REKOD-BINCANG-DEPLOYMENT-UAT.txt
+================================================================================
+
+CARA GUNA FAIL INI
+  • Bila lupa kenapa ada 3 fasa UAT — baca bahagian KEPUTUSAN
+  • Bila customer tanya soalan sama — rujuk SOALAN & JAWAPAN
+  • Checklist untuk meeting — buka: CHECKLIST-UAT-3-FASA-CUSTOMER.txt
+  • Struktur folder — buka: PANDUAN-DEPLOY.txt
+
+================================================================================
+KONTEKS PROJEK (RINGKAS)
+================================================================================
+
+  Projek   : MSNC PeopleHub (sistem-hr)
+  Lokasi   : C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr
+  Stack    : Next.js 15 + TypeScript + Tailwind, output standalone
+  Phase 1  : UI 46 modul, login mock, localStorage — SIAP untuk demo UI
+  Phase 2  : DB + API sebenar — BELUM mula (abang kata xnak SQL dulu)
+  Deploy   : Folder deploy/ — Windows Service, IIS, build-production.bat
+  Production sasaran : On-premise Windows Server di office customer (bukan cloud)
+
+================================================================================
+PERBUALAN 1 — HTML vs SISTEM SEPERTI DEPOH
+================================================================================
+
+Soalan abang:
+  Conclusion: HTML takde masalah ke untuk run macam Depoh?
+
+Keputusan:
+  • HTML sendiri BUKAN masalah.
+  • Yang penting: server + database (atau IndexedDB untuk offline sahaja).
+  • Depoh nampak HTML tapi live = Vercel + Cloudflare Worker + D1.
+  • PeopleHub guna Next.js (bukan HTML plain) — tetap serve web, tapi ada Node server.
+  • Phase 2 HRMS perlu DB + API — bukan tukar format fail, tapi tambah lapisan data kongsi.
+
+Fail rujukan HR sekarang:
+  • src/lib/auth/auth-store.ts  → localStorage (mock)
+  • Tiada src/app/api/ lagi
+  • DB akan: SQL Server/Postgres pada server; schema dalam prisma/ (belum wujud)
+
+================================================================================
+PERBUALAN 2 — PHASE 2: DB & API KAT MANA?
+================================================================================
+
+Database:
+  • Hidup atas Windows Server customer (production)
+  • Dalam projek: prisma/schema.prisma + .env (DATABASE_URL)
+  • BUKAN dalam folder HTML/React
+
+API:
+  • src/app/api/ — Next.js Route Handlers
+  • Contoh: api/auth/login, api/users, api/employees
+  • src/lib/db/client.ts — sambungan DB
+
+Wajib sebelum Phase 2 coding:
+  1. Pilih DB (SQL Server disyorkan untuk customer Windows)
+  2. Modul keutamaan dulu: Users/Auth → Employees → 1 modul HR
+  3. Skema jadual asas
+  4. Password hash + session httpOnly (bukan plain text)
+  5. Persekitaran dev dengan DB
+
+Tak wajib tunggu:
+  • 46 modul semua real data
+  • AI copilot sebenar
+  • Deploy ke customer
+
+================================================================================
+PERBUALAN 3 — SQL SERVER KAT PC ABANG?
+================================================================================
+
+Soalan: Nanti SQL Server install kat PC ni ke?
+
+Jawapan:
+  • DEV (PC abang): pilihan — SQL Express / Docker / Postgres — untuk coding Phase 2
+  • PRODUCTION: SQL Server atas Windows Server CUSTOMER — bukan PC abang
+  • Data klien tidak simpan pada PC abang
+
+Keputusan abang (17 Jul 2026):
+  "xnak la dulu.. hahaha" — Phase 2 & SQL ditangguh; terus guna Phase 1 mock.
+
+================================================================================
+PERBUALAN 4 — CUSTOMER ON-PREMISE (SERVER OFFICE SAHAJA)
+================================================================================
+
+Soalan: Customer tak nak host cloud, run local office server — lagi mudah?
+
+Jawapan:
+  • Untuk CUSTOMER: ya, lebih mudah & selesa (data dalam office, tiada langganan host)
+  • Untuk VENDOR (abang): setup pertama lebih teratur, lepas itu pattern sama
+  • PeopleHub dah align: standalone + deploy/ scripts
+
+Aliran office:
+  PC Staf → LAN → Server HR (Windows) → SQL Server
+
+================================================================================
+PERBUALAN 5 — KENA WINDOWS SERVER DULU SEBELUM DEMO?
+================================================================================
+
+Soalan: Kena setup Windows Server dulu untuk customer demo?
+
+Jawapan — 3 tahap demo:
+
+  Tahap A (pitch UI):
+    Laptop + npm run dev / projector — TAK perlu server
+
+  Tahap B (feedback ramai user):
+    1 PC/VM server LAN + DB (Phase 2a) — server biasa OK, belum mesti Windows Server edition
+
+  Tahap C (go-live):
+    Windows Server customer — wajib untuk IT serious
+
+================================================================================
+PERBUALAN 6 — KENAPA LAPTOP TAK CUKUP UNTUK FEEDBACK
+================================================================================
+
+Isu abang:
+  Kalau guna laptop, user tak boleh bagi feedback bug/error/modul yang tak wujud
+
+Keputusan:
+  • Betul — user perlu hands-on serentak
+  • Phase 1 localStorage: walaupun host LAN, setiap browser data BERASINGAN
+  • Untuk feedback kredibel: server kongsi + DB/API (Phase 2a minimum)
+  • Elok ada modul Report Issue atau saluran struktur (borang/Excel)
+
+================================================================================
+PERBUALAN 7 — STRATEGI 3 PUSINGAN (KEPUTUSAN UTAMA)
+================================================================================
+
+Cadangan abang (DILULUSKAN sebagai strategi rasmi):
+
+  ROUND 1 — Live host (UAT Cloud)
+    • Ramai user office test serentak
+    • Kumpul bug, error, permintaan modul
+    • Vendor fix cepat tanpa perlu datang office
+    • Data DUMMY sahaja
+    • Perlukan Phase 2a (DB + API) — bukan localStorage
+
+  ROUND 2 — Local PC server dalam office customer
+    • Selepas bug Fasa 1 selesai
+    • Test dalam LAN — tiada cloud
+    • Customer & IT rasa operasi sebenar
+    • PC biasa OK; belum Windows Server penuh
+
+  ROUND 3 — Windows Server production
+    • Bila semua betul-betul puas hati
+    • Go-live rasmi, backup, AMC, latihan
+    • Data production
+
+Sign-off diperlukan antara setiap fasa sebelum terus ke fasa seterusnya.
+
+Fail checklist customer:
+  CHECKLIST-UAT-3-FASA-CUSTOMER.txt (root sistem-hr/)
+
+================================================================================
+PERBUALAN 8 — SUSUN STRUKTUR DOKUMEN (ikut depoh)
+================================================================================
+
+Perintah abang: ikut rule of work sama macam depoh, txt di tempat betul.
+
+Keputusan (17 Jul 2026):
+  • Txt panduan di ROOT sistem-hr/ — bukan docs/
+  • docs/ — docx rujukan sahaja
+  • config-tetapan/ — LINK-HOST.txt, deploy-info.txt
+  • launcher/ — .bat dev/build
+  • snapshot/ — zip backup
+  • panduan/PANDUAN-DEPLOY.txt = panduan utama
+  • Root bersih — txt semua dalam panduan/
+
+================================================================================
+STATUS TEKNIKAL SEWAKTU REKOD INI DITULIS
+================================================================================
+
+  [x] Phase 1 UI + auth mock
+  [x] deploy/ scripts Windows
+  [x] Dokumentasi strategi 3 fasa + struktur folder depoh-style
+  [ ] prisma / SQL Server
+  [ ] src/app/api/
+  [ ] UAT cloud host
+  [ ] UAT PC office customer
+  [ ] Windows Server production
+
+Default mock users (Phase 1):
+  admin / admin123  (Admin)
+  hr    / hr123     (HR Manager)
+  staff / staff123  (Staff)
+
+Dev: launcher/JALAN-DEV.bat → http://localhost:3000
+
+================================================================================
+PERBUALAN 8 — AUDIT LOG USER (17 Jul 2026)
+================================================================================
+
+Soalan abang:
+  Sistem dah ada log rekod kerja user untuk trace buat apa?
+
+Jawapan:
+  • Phase 1: TIDAK — modul Security «Audit Log» mock sahaja
+  • Tiada rekod login, user CRUD, atau tindakan sebenar
+  • Ubah fail kod = git (developer), bukan scope audit app
+
+Keputusan:
+  • Audit log WAJIB masuk Phase 2a (serentak DB + auth API)
+  • Rujuk penuh: panduan/RANCANGAN-PHASE-2.txt §3
+
+================================================================================
+PERBUALAN 9 — PARITY KESELAMATAN DEPOH (17 Jul 2026)
+================================================================================
+
+Perintah abang:
+  Pastikan dari segi security login dan seluruh security Depoh ada di sistem-hr.
+
+Keputusan:
+  • Phase 1: TIDAK ada — login mock localStorage, Security module palsu
+  • Phase 2a WAJIB capai parity Depoh (login, sesi, idle, audit, role)
+  • Senarai tick penuh: panduan/PARITY-KESELAMATAN-DEPOH.txt
+  • Config: config-projek/security-config.json
+  • Penambahbaikan HR: remember username sahaja; password min 8
+
+Tidak perlu dari Depoh: Portal A/B (towing).
+
+================================================================================
+LANGKAH SETERUSNYA (BILA ABANG READY)
+================================================================================
+
+  1. Baca panduan/RANCANGAN-PHASE-2.txt
+  2. Phase 2a: SQL Server + Prisma + /api/auth + /api/users + audit_log
+  3. Ganti auth-store.ts → API; /security → data audit sebenar
+  4. UAT Round 1 cloud → Round 2 PC office → Round 3 Windows Server
+
+================================================================================
+AKHIR REKOD
+================================================================================

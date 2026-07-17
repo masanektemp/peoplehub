@@ -1,0 +1,25 @@
+{
+  "appName": "MSNC PeopleHub",
+  "appCode": "peoplehub",
+  "version": "0.1.0",
+  "phase": 1,
+  "locale": {
+    "uiLanguage": "en",
+    "conversationLanguage": "ms"
+  },
+  "company": {
+    "defaultName": "MSNC Group",
+    "defaultCode": "MSNC"
+  },
+  "dev": {
+    "port": 3000,
+    "hostname": "localhost"
+  },
+  "auth": {
+    "storage": "localStorage",
+    "storageKeys": {
+      "users": "peoplehub-users",
+      "session": "peoplehub-session"
+    }
+  }
+}

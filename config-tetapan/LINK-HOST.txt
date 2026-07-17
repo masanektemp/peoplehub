@@ -1,0 +1,25 @@
+PAUTAN HOST — MSNC PEOPLEHUB
+============================
+Dikemas kini: 17 Julai 2026
+
+DEVELOPMENT (PC abang)
+----------------------
+  URL      : http://localhost:3000
+  Jalankan : launcher\JALAN-DEV.bat  atau  jalan.bat
+  Nota     : Phase 1 mock — localStorage, bukan production
+
+UAT FASA 1 — LIVE HOST (belum setup)
+------------------------------------
+  URL      : _______________
+  Nota     : Isi bila Phase 2a + host UAT cloud ready
+  Data     : DUMMY sahaja — bukan data HR sebenar
+
+UAT FASA 2 — PC SERVER OFFICE (belum setup)
+-------------------------------------------
+  IP/Host  : _______________
+  Nota     : LAN office customer — isi bila UAT kedua
+
+PRODUCTION FASA 3 — WINDOWS SERVER (belum setup)
+------------------------------------------------
+  Host     : _______________
+  Nota     : Go-live customer — isi bila deploy rasmi

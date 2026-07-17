@@ -1,0 +1,59 @@
+---
+pid: 21476
+cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
+command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run dev"
+started_at: 2026-07-17T06:26:30.209Z
+running_for_ms: 650000   
+---
+
+> msnc-peoplehub@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.20
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.122:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.5s
+ ○ Compiling /feedback ...
+ ✓ Compiled /feedback in 3.2s (769 modules)
+ GET /feedback 200 in 3483ms
+ ✓ Compiled in 626ms (317 modules)
+ ✓ Compiled in 97ms (317 modules)
+ GET /feedback 200 in 43ms
+ ○ Compiling /[module] ...
+ ✓ Compiled /[module] in 2.4s (1868 modules)
+ GET /favicon.ico 200 in 3325ms
+ ✓ Compiled in 205ms (849 modules)
+ GET /feedback 200 in 172ms
+ ✓ Compiled in 194ms (849 modules)
+ GET /feedback 200 in 55ms
+ ✓ Compiled in 167ms (849 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 817ms (1892 modules)
+ GET / 200 in 1056ms
+ GET /feedback 200 in 1043ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 658ms (1842 modules)
+ GET /login 200 in 833ms
+ GET /login 200 in 25ms
+ GET /login 200 in 33ms
+ ✓ Compiled /[module] in 221ms (1057 modules)
+ GET /favicon.ico 200 in 484ms
+ GET / 200 in 39ms
+ GET / 200 in 26ms
+ GET / 200 in 28ms
+ GET /favicon.ico 200 in 66ms
+ GET /login 200 in 35ms
+ GET /login 200 in 27ms
+ GET /login 200 in 30ms
+ GET /favicon.ico 200 in 52ms
+ GET / 200 in 33ms
+ GET / 200 in 26ms
+ GET / 200 in 25ms
+ GET /favicon.ico 200 in 57ms
+ GET / 200 in 46ms
+ GET /feedback 200 in 43ms
+ GET /reports 200 in 37ms
+ GET /favicon.ico 200 in 37ms
+

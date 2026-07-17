@@ -3,7 +3,7 @@ pid: 10000
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
 command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Start-Sleep -Seconds 1; npm run dev"
 started_at: 2026-07-16T18:20:39.373Z
-running_for_ms: 345009   
+running_for_ms: 6370003  
 ---
 
 > msnc-peoplehub@0.1.0 dev
