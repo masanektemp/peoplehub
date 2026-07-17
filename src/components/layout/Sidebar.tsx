@@ -1,12 +1,37 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, MessageSquarePlus, UserCog, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navGroups } from "@/lib/modules";
 import { useAuth } from "@/contexts/AuthContext";
+
+/** Pin buka mesti survive remount bila tukar page (setiap route ada AppShell sendiri) */
+const PINNED_OPEN_KEY = "peoplehub-sidebar-pinned-open-v3";
+/** Tunggu hover sekurang-kurangnya ni sebelum auto expand (kurang sensitif) */
+const HOVER_EXPAND_MS = 1500;
+
+function loadPinnedOpen(): Set<string> {
+  if (typeof window === "undefined") return new Set();
+  try {
+    const raw = sessionStorage.getItem(PINNED_OPEN_KEY);
+    if (!raw) return new Set();
+    const arr = JSON.parse(raw) as string[];
+    return new Set(Array.isArray(arr) ? arr : []);
+  } catch {
+    return new Set();
+  }
+}
+
+function savePinnedOpen(groups: Set<string>) {
+  try {
+    sessionStorage.setItem(PINNED_OPEN_KEY, JSON.stringify([...groups]));
+  } catch {
+    /* ignore */
+  }
+}
 
 type NavItem = {
   href: string;
@@ -20,20 +45,36 @@ type SidebarGroup = {
 };
 
 /**
- * ONE rule for every group (Main, Finance, Admin, …):
- * - Hover → open; leave → auto tutup (kecuali pin buka)
- * - Klik semasa buka hover → PIN BUKA (kekal buka, 1 klik)
- * - Klik semasa pin buka → manual tutup (sementara: hover di situ tak buka)
- * - Leave / hover group lain → clear manual tutup → auto buka/tutup hidup balik
+ * ONE rule for every group (Main, Finance, Additional, Admin, …):
+ * - Hover → open; leave → auto tutup (kecuali pin buka ATAU group page semasa)
+ * - Page semasa dalam group → group tu KEKAL buka (route soft-open) — semua kategori
+ * - Klik semasa buka hover je → PIN BUKA
+ * - Klik semasa pin buka / route open → manual tutup sementara
+ * - Leave → clear manual tutup; route group auto buka semula
  */
 export function Sidebar() {
   const pathname = usePathname();
   const { isAdmin } = useAuth();
 
   const [hovered, setHovered] = useState<string | null>(null);
-  const [pinnedOpen, setPinnedOpen] = useState<Set<string>>(() => new Set());
-  /** Manual tutup — sementara je; clear bila leave atau hover group lain */
+  const [pinnedOpen, setPinnedOpen] = useState<Set<string>>(() => loadPinnedOpen());
+  /** Manual tutup — sementara; clear bila leave */
   const [pinnedClosed, setPinnedClosed] = useState<Set<string>>(() => new Set());
+  const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearHoverTimer = () => {
+    if (hoverTimerRef.current != null) {
+      clearTimeout(hoverTimerRef.current);
+      hoverTimerRef.current = null;
+    }
+  };
+
+  // Kekal pin buka lepas navigate Vehicle → Meeting Room dsb.
+  useEffect(() => {
+    savePinnedOpen(pinnedOpen);
+  }, [pinnedOpen]);
+
+  useEffect(() => () => clearHoverTimer(), []);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -60,9 +101,22 @@ export function Sidebar() {
     return groups;
   }, [isAdmin]);
 
+  /** Group yang ada page aktif — kekal buka (semua kategori sama) */
+  const routeOpenLabels = useMemo(() => {
+    const labels = new Set<string>();
+    for (const group of allGroups) {
+      if (group.items.some((item) => isActive(item.href))) {
+        labels.add(group.label);
+      }
+    }
+    return labels;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, allGroups]);
+
   const isOpen = (label: string) => {
     if (pinnedClosed.has(label)) return false;
     if (pinnedOpen.has(label)) return true;
+    if (routeOpenLabels.has(label)) return true;
     return hovered === label;
   };
 
@@ -70,36 +124,60 @@ export function Sidebar() {
     items.some((item) => isActive(item.href));
 
   const toggleGroup = (label: string) => {
-    // Dah pin buka → klik = manual tutup (sementara, sampai leave / hover lain)
-    if (pinnedOpen.has(label)) {
-      setPinnedOpen((prev) => {
+    const open = isOpen(label);
+    const isRoute = routeOpenLabels.has(label);
+    const isPinned = pinnedOpen.has(label);
+    const isHoverOnly = hovered === label && !isPinned && !isRoute;
+
+    if (!open) {
+      setPinnedClosed((prev) => {
         const next = new Set(prev);
         next.delete(label);
         return next;
       });
-      setPinnedClosed((prev) => new Set(prev).add(label));
-      setHovered((h) => (h === label ? null : h));
+      setPinnedOpen((prev) => new Set(prev).add(label));
       return;
     }
 
-    // Buka hover je → pin buka; atau tutup → pin buka
-    setPinnedClosed((prev) => {
+    // Buka sebab hover je → pin buka (kekal buka lepas leave)
+    if (isHoverOnly) {
+      setPinnedClosed((prev) => {
+        const next = new Set(prev);
+        next.delete(label);
+        return next;
+      });
+      setPinnedOpen((prev) => new Set(prev).add(label));
+      return;
+    }
+
+    // Pin buka atau route open → manual tutup sementara
+    setPinnedOpen((prev) => {
       const next = new Set(prev);
       next.delete(label);
       return next;
     });
-    setPinnedOpen((prev) => new Set(prev).add(label));
+    setPinnedClosed((prev) => new Set(prev).add(label));
+    setHovered((h) => (h === label ? null : h));
   };
 
   const onGroupEnter = (label: string) => {
-    // Masih dalam kawasan lepas manual tutup (belum leave) → jangan auto-buka
     if (pinnedClosed.has(label)) return;
-    setHovered(label);
+    // Dah buka (pin / route) — tak perlu timer expand
+    if (pinnedOpen.has(label) || routeOpenLabels.has(label)) {
+      clearHoverTimer();
+      setHovered(label);
+      return;
+    }
+    clearHoverTimer();
+    hoverTimerRef.current = setTimeout(() => {
+      hoverTimerRef.current = null;
+      setHovered(label);
+    }, HOVER_EXPAND_MS);
   };
 
   const onGroupLeave = (label: string) => {
+    clearHoverTimer();
     setHovered((h) => (h === label ? null : h));
-    // Leave / pergi tempat lain → lepaskan manual tutup; auto buka–collapse hidup balik
     setPinnedClosed((prev) => {
       if (!prev.has(label)) return prev;
       const next = new Set(prev);
