@@ -3,16 +3,9 @@ import { AppShell } from "@/components/layout/AppShell";
 import { ModulePageView } from "@/components/modules/ModulePageView";
 import { getModule, toModulePageData } from "@/lib/modules";
 
-export const dynamic = "force-dynamic";
-
-interface ModulePageProps {
-  params: Promise<{ module: string }>;
-}
-
-export default async function ModulePage({ params }: ModulePageProps) {
-  const { module: slug } = await params;
+/** Shared shell for one static module route: /attendance, /announcement, … */
+export function ModuleRoutePage({ slug }: { slug: string }) {
   const mod = getModule(slug);
-
   if (!mod) notFound();
 
   const copilotOpen = slug === "ai-copilot";

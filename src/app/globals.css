@@ -143,3 +143,8 @@ body {
 .modal-pop-in {
   animation: modalPopIn 380ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
+/* Sidebar: reserve scrollbar space so chevrons don't jump left */
+.sidebar-nav {
+  scrollbar-gutter: stable;
+}
