@@ -14,6 +14,9 @@
 # next.js
 /.next/
 /out/
+.open-next/
+.wrangler/
+.dev.vars
 
 # production
 /build
@@ -41,3 +44,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .aider*
+
+# local logs / IDE noise
+/terminals/
+mcps/

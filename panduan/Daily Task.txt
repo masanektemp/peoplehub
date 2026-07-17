@@ -82,6 +82,38 @@ Status: SIAP — dokumentasi; implement Phase 2a bila ready
 Status: SIAP — open /feedback after npm run dev
 
 --------------------------------------------------------------------------------
+17 Julai 2026 | deploy Cloudflare PeopleHub
+--------------------------------------------------------------------------------
+
+[1] OpenNext + wrangler setup (msnc-peoplehub)
+[2] D1 peoplehub-db + feedback table (remote)
+[3] npm run deploy OK → https://msnc-peoplehub.bobmpaj.workers.dev
+[4] Nota: dinsanek.workers.dev still starter (dashboard account berbeza)
+
+Status: LIVE (bobmpaj account) — LATER: abang padam sendiri; pantang sentuh bobmpaj
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | PANTANG bobmpaj
+--------------------------------------------------------------------------------
+
+[1] Abang: mulai sekarang JANGAN SESUNGGUHNYA sentuh cloud bobmpaj
+[2] Direkod CONTEXT-CURSOR + .cursor/rules
+[3] Deploy cloud next = Dinsanek only + confirm whoami dulu
+
+Status: LOCK
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | deploy Dinsanek OK
+--------------------------------------------------------------------------------
+
+[1] wrangler login → dinsanek@gmail.com
+[2] D1 peoplehub-db (Dinsanek) + schema feedback
+[3] npm run deploy → https://msnc-peoplehub.dinsanek.workers.dev
+[4] bobmpaj NOT touched
+
+Status: LIVE Dinsanek
+
+--------------------------------------------------------------------------------
 17 Julai 2026 | rule localhost always up
 --------------------------------------------------------------------------------
 

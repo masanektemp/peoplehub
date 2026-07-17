@@ -91,7 +91,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="flex h-full w-60 shrink-0 flex-col border-r border-border bg-[#0d1321]">
+    <aside className="flex h-full w-60 shrink-0 flex-col border-r border-border bg-sidebar">
       <div className="flex h-16 shrink-0 items-center gap-2.5 border-b border-border px-5">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
           <div className="flex gap-0.5">
@@ -101,7 +101,7 @@ export function Sidebar() {
           </div>
         </div>
         <div>
-          <span className="block text-sm font-semibold tracking-tight text-white">
+          <span className="block text-sm font-semibold tracking-tight text-text">
             MSNC PeopleHub
           </span>
           <span className="text-[10px] text-text-dim">HRMS Enterprise</span>
@@ -137,8 +137,8 @@ export function Sidebar() {
                 className={cn(
                   "mb-0.5 flex w-full items-center justify-between rounded-lg px-3 py-2 text-left transition-all duration-[900ms] ease-out",
                   open
-                    ? "bg-surface-elevated/60 text-slate-100 scale-[1.02]"
-                    : "text-slate-300 hover:bg-surface-elevated/40 hover:text-slate-100 scale-100"
+                    ? "bg-surface-elevated/60 text-text scale-[1.02]"
+                    : "text-text-muted hover:bg-surface-elevated/40 hover:text-text scale-100"
                 )}
               >
                 <span className="text-[10px] font-semibold uppercase tracking-wider">
@@ -202,8 +202,8 @@ export function Sidebar() {
               className={cn(
                 "mb-0.5 flex w-full items-center justify-between rounded-lg px-3 py-2 text-left transition-all duration-[900ms] ease-out",
                 isOpen("Admin")
-                  ? "bg-surface-elevated/60 text-slate-100 scale-[1.02]"
-                  : "text-slate-300 hover:bg-surface-elevated/40 hover:text-slate-100 scale-100"
+                  ? "bg-surface-elevated/60 text-text scale-[1.02]"
+                  : "text-text-muted hover:bg-surface-elevated/40 hover:text-text scale-100"
               )}
             >
               <span className="text-[10px] font-semibold uppercase tracking-wider">Admin</span>

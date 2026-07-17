@@ -38,3 +38,18 @@ alwaysApply: true
 - **WAJIB:** selepas coding baru, pastikan `npm run dev` / `localhost:3000` **UP**
   (check port 3000; start dev server jika mati — abang tak perlu start manual)
 - Phase 2 / SQL / deploy hanya bila user minta explicitly
+
+## PANTANG KERAS — Cloudflare bobmpaj
+
+- **JANGAN SESUNGGUHNYA** sentuh akaun Cloudflare **bobmpaj** (`bobmpaj@gmail.com`, `*.bobmpaj.workers.dev`)
+- Dilarang: `wrangler deploy/delete` ke bobmpaj, create/delete D1/R2/Worker di bobmpaj
+- Cloud PeopleHub hanya akaun **Dinsanek** bila abang **explicit** minta
+- Jangan sentuh projek **depoh** tanpa abang minta explicitly
+- Sebelum deploy cloud: confirm akaun `wrangler whoami` = akaun yang abang setuju
+
+## Komunikasi berperingkat (PANTANG serabut)
+
+- **Stage 1 (SEKARANG):** demo LIVE cloud sahaja. Fokus selesai stage 1.
+- **Stage 2** (local PC server customer): **JANGAN sebut / ungkit** sehingga stage 1 siap DAN abang minta.
+- **Stage 3:** abang dah tahu — **JANGAN sebut**.
+- Jangan campur “on-premise / Windows Server / stage 2” dalam jawapan stage 1.

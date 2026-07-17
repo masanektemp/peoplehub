@@ -6,7 +6,6 @@ import {
 } from "@/lib/feedback/store";
 import type { FeedbackStatus } from "@/lib/feedback/types";
 
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {

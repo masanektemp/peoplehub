@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Bell, ChevronDown, LogOut, Search, Sparkles, UserCog } from "lucide-react";
+import { Bell, ChevronDown, LogOut, Moon, Search, Sparkles, Sun, UserCog } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import { roleLabel } from "@/lib/auth/auth-store";
 
 interface HeaderProps {
@@ -28,6 +29,7 @@ export function Header({
   copilotOpen = false,
 }: HeaderProps) {
   const { session, logout, isAdmin } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -55,6 +57,16 @@ export function Header({
       </div>
 
       <div className="flex items-center gap-4">
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="rounded-lg p-2 text-text-muted transition-colors hover:bg-surface-elevated hover:text-text"
+          aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+          title={theme === "dark" ? "Light theme" : "Dark theme"}
+        >
+          {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </button>
+
         <button
           type="button"
           className="relative rounded-lg p-2 text-text-muted transition-colors hover:bg-surface-elevated hover:text-text"

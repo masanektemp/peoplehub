@@ -9,9 +9,13 @@
     "start:prod": "node .next/standalone/server.js",
     "lint": "eslint . --max-warnings 0 --config config-projek/eslint.config.mjs",
     "jalan": "next dev",
-    "deploy:build": "npm run build && node scripts/windows/copy-standalone.js"
+    "deploy:build": "npm run build && node scripts/windows/copy-standalone.js",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",
     "next": "^15.3.3",
@@ -28,6 +32,7 @@
     "eslint": "^9.27.0",
     "eslint-config-next": "^15.3.3",
     "tailwindcss": "^4.1.8",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "wrangler": "^4.111.0"
   }
 }

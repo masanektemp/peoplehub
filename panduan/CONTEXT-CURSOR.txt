@@ -56,6 +56,14 @@ KOMUNIKASI
 • WAJIB: selepas coding baru, pastikan npm run dev / localhost:3000 UP
   (jangan biar abang start manual — Leha check port 3000 & start jika mati)
 • Jangan deploy / SQL tanpa abang minta explicitly
+• PANTANG KERAS: JANGAN SESUNGGUHNYA sentuh Cloudflare akaun bobmpaj
+  (bobmpaj@gmail.com / *.bobmpaj.workers.dev) — deploy, delete, D1, R2, wrangler
+  ke akaun tu DILARANG. PeopleHub cloud = akaun Dinsanek sahaja bila abang minta.
+• PANTANG: jangan sentuh projek depoh tanpa abang minta explicitly
+• KOMUNIKASI BERPERINGKAT (abang 17 Jul 2026):
+  - Stage 1 = demo LIVE cloud (FOKUS SEKARANG). Jangan sebut stage 2/3.
+  - Stage 2 = local PC server customer — JANGAN ungkit sampai stage 1 siap & abang minta.
+  - Stage 3 = abang dah tahu — JANGAN sebut.
 
 PHASE 2 BILA READY (rujuk panduan/RANCANGAN-PHASE-2.txt)
 ----------------------------------------------------------
