@@ -70,7 +70,7 @@ Write-Host \"`nwhere php:\"; where.exe php 2>&1
 Write-Host \"where composer:\"; where.exe composer 2>&1
 "
 started_at: 2026-07-17T04:34:43.393Z
-running_for_ms: 7344999  
+running_for_ms: 8630001  
 ---
 === BEFORE uninstall ===
 PHP exists: True

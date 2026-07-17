@@ -3,7 +3,7 @@ pid: 13420
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
 command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run dev"
 started_at: 2026-07-17T06:32:24.235Z
-running_for_ms: 300012   
+running_for_ms: 1585015  
 ---
 
 > msnc-peoplehub@0.1.0 dev
@@ -60,3 +60,66 @@ running_for_ms: 300012
  GET / 200 in 302ms
  GET /feedback 200 in 39ms
  GET /favicon.ico 200 in 55ms
+ ✓ Compiled in 903ms (1913 modules)
+ GET /feedback 200 in 113ms
+ GET /feedback 200 in 127ms
+ ✓ Compiled in 256ms (867 modules)
+ GET /feedback 200 in 35ms
+ ✓ Compiled in 649ms (1310 modules)
+ GET /feedback 200 in 232ms
+ ✓ Compiled in 304ms (867 modules)
+ GET /feedback 200 in 30ms
+ ✓ Compiled in 546ms (1310 modules)
+ GET /feedback 200 in 94ms
+ ✓ Compiled / in 128ms (981 modules)
+ GET / 200 in 248ms
+ ✓ Compiled in 722ms (1310 modules)
+ GET /feedback 200 in 100ms
+ ✓ Compiled / in 136ms (981 modules)
+ GET / 200 in 279ms
+ GET /feedback 200 in 48ms
+ ✓ Compiled /[module] in 387ms (1046 modules)
+ GET /favicon.ico 200 in 632ms
+ ✓ Compiled in 571ms (1899 modules)
+ GET /feedback 200 in 94ms
+ ✓ Compiled / in 149ms (1046 modules)
+ GET / 200 in 285ms
+ ✓ Compiled in 558ms (1848 modules)
+ GET /feedback 200 in 128ms
+ GET / 200 in 99ms
+ ✓ Compiled /[module] in 209ms (1046 modules)
+ GET /announcement 200 in 404ms
+ GET /favicon.ico 200 in 85ms
+ GET /announcement 200 in 63ms
+ GET /favicon.ico 200 in 49ms
+ ✓ Compiled in 817ms (1899 modules)
+ GET /announcement 200 in 140ms
+ ✓ Compiled / in 134ms (1046 modules)
+ GET / 200 in 252ms
+ GET /cost-center 200 in 62ms
+ GET /favicon.ico 200 in 36ms
+ GET /mobile 200 in 42ms
+ GET /favicon.ico 200 in 40ms
+ GET /engagement 200 in 49ms
+ GET /favicon.ico 200 in 76ms
+ GET /ai-assistant 200 in 49ms
+ GET /favicon.ico 200 in 41ms
+ ✓ Compiled in 524ms (1899 modules)
+ GET /ai-assistant 200 in 260ms
+ ✓ Compiled in 278ms (867 modules)
+ GET /ai-assistant 200 in 27ms
+ ✓ Compiled / in 138ms (1046 modules)
+ GET / 200 in 285ms
+ GET /ai-assistant 200 in 84ms
+ GET /favicon.ico 200 in 41ms
+ GET /ai-assistant 200 in 37ms
+ ✓ Compiled in 793ms (1899 modules)
+ GET /ai-assistant 200 in 145ms
+ ✓ Compiled / in 128ms (1046 modules)
+ GET / 200 in 238ms
+ GET /exit 200 in 65ms
+ GET /favicon.ico 200 in 40ms
+ GET /integration 200 in 36ms
+ GET /favicon.ico 200 in 38ms
+ GET /notification 200 in 46ms
+ GET /favicon.ico 200 in 51ms
