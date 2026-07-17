@@ -1,6 +1,6 @@
 {
   "phase": 1,
-  "note": "Mock users for development — replace with database in Phase 2",
+  "note": "Mock users for pilot demo \u2014 terminal01-20 all Admin, password demo123",
   "users": [
     {
       "id": "usr-001",
@@ -28,11 +28,303 @@
       "email": "john.doe@company.com",
       "role": "staff",
       "active": true
+    },
+    {
+      "id": "usr-t01",
+      "username": "terminal01",
+      "password": "demo123",
+      "name": "Terminal 01",
+      "email": "terminal01@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t02",
+      "username": "terminal02",
+      "password": "demo123",
+      "name": "Terminal 02",
+      "email": "terminal02@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t03",
+      "username": "terminal03",
+      "password": "demo123",
+      "name": "Terminal 03",
+      "email": "terminal03@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t04",
+      "username": "terminal04",
+      "password": "demo123",
+      "name": "Terminal 04",
+      "email": "terminal04@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t05",
+      "username": "terminal05",
+      "password": "demo123",
+      "name": "Terminal 05",
+      "email": "terminal05@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t06",
+      "username": "terminal06",
+      "password": "demo123",
+      "name": "Terminal 06",
+      "email": "terminal06@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t07",
+      "username": "terminal07",
+      "password": "demo123",
+      "name": "Terminal 07",
+      "email": "terminal07@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t08",
+      "username": "terminal08",
+      "password": "demo123",
+      "name": "Terminal 08",
+      "email": "terminal08@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t09",
+      "username": "terminal09",
+      "password": "demo123",
+      "name": "Terminal 09",
+      "email": "terminal09@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t10",
+      "username": "terminal10",
+      "password": "demo123",
+      "name": "Terminal 10",
+      "email": "terminal10@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t11",
+      "username": "terminal11",
+      "password": "demo123",
+      "name": "Terminal 11",
+      "email": "terminal11@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t12",
+      "username": "terminal12",
+      "password": "demo123",
+      "name": "Terminal 12",
+      "email": "terminal12@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t13",
+      "username": "terminal13",
+      "password": "demo123",
+      "name": "Terminal 13",
+      "email": "terminal13@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t14",
+      "username": "terminal14",
+      "password": "demo123",
+      "name": "Terminal 14",
+      "email": "terminal14@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t15",
+      "username": "terminal15",
+      "password": "demo123",
+      "name": "Terminal 15",
+      "email": "terminal15@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t16",
+      "username": "terminal16",
+      "password": "demo123",
+      "name": "Terminal 16",
+      "email": "terminal16@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t17",
+      "username": "terminal17",
+      "password": "demo123",
+      "name": "Terminal 17",
+      "email": "terminal17@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t18",
+      "username": "terminal18",
+      "password": "demo123",
+      "name": "Terminal 18",
+      "email": "terminal18@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t19",
+      "username": "terminal19",
+      "password": "demo123",
+      "name": "Terminal 19",
+      "email": "terminal19@msnc-demo.local",
+      "role": "admin",
+      "active": true
+    },
+    {
+      "id": "usr-t20",
+      "username": "terminal20",
+      "password": "demo123",
+      "name": "Terminal 20",
+      "email": "terminal20@msnc-demo.local",
+      "role": "admin",
+      "active": true
     }
   ],
   "demoCredentials": [
-    { "role": "admin", "username": "admin", "password": "admin123" },
-    { "role": "hr", "username": "hr", "password": "hr123" },
-    { "role": "staff", "username": "staff", "password": "staff123" }
+    {
+      "role": "admin",
+      "username": "admin",
+      "password": "admin123"
+    },
+    {
+      "role": "hr",
+      "username": "hr",
+      "password": "hr123"
+    },
+    {
+      "role": "staff",
+      "username": "staff",
+      "password": "staff123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal01",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal02",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal03",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal04",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal05",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal06",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal07",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal08",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal09",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal10",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal11",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal12",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal13",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal14",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal15",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal16",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal17",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal18",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal19",
+      "password": "demo123"
+    },
+    {
+      "role": "admin",
+      "username": "terminal20",
+      "password": "demo123"
+    }
   ]
 }

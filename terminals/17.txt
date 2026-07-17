@@ -3,7 +3,7 @@ pid: 13420
 cwd: "C:\Users\Masanek\Desktop\GrokLab\Project\sistem-hr"
 command: "Set-Location \"C:\\Users\\Masanek\\Desktop\\GrokLab\\Project\\sistem-hr\"; npm run dev"
 started_at: 2026-07-17T06:32:24.235Z
-running_for_ms: 1585015  
+running_for_ms: 2135010  
 ---
 
 > msnc-peoplehub@0.1.0 dev
@@ -123,3 +123,60 @@ running_for_ms: 1585015
  GET /favicon.ico 200 in 38ms
  GET /notification 200 in 46ms
  GET /favicon.ico 200 in 51ms
+ ✓ Compiled in 514ms (1899 modules)
+ ✓ Compiled in 291ms (867 modules)
+ GET /notification 200 in 281ms
+ GET /notification 200 in 28ms
+ ✓ Compiled / in 148ms (1046 modules)
+ GET / 200 in 303ms
+ GET /vehicle 200 in 70ms
+ GET /favicon.ico 200 in 45ms
+ GET /payroll 200 in 37ms
+ GET /favicon.ico 200 in 37ms
+ GET /ai-assistant 200 in 40ms
+ GET /favicon.ico 200 in 42ms
+ ✓ Compiled in 185ms (867 modules)
+ GET /ai-assistant 200 in 50ms
+ ○ Compiling /users ...
+ ✓ Compiled /users in 804ms (1901 modules)
+ GET /users 200 in 882ms
+ GET /favicon.ico 200 in 110ms
+ ✓ Compiled in 185ms (873 modules)
+ GET /users 200 in 29ms
+ ✓ Compiled in 153ms (873 modules)
+ GET /users 200 in 26ms
+ ✓ Compiled in 686ms (1915 modules)
+ GET /users 200 in 98ms
+ ✓ Compiled in 720ms (1915 modules)
+ GET /users 200 in 214ms
+ ✓ Compiled in 232ms (873 modules)
+ GET /users 200 in 27ms
+ ✓ Compiled / in 174ms (1056 modules)
+ GET / 200 in 299ms
+ ✓ Compiled in 387ms (1929 modules)
+ GET /users 200 in 137ms
+ ✓ Compiled in 196ms (873 modules)
+ ✓ Compiled in 191ms (873 modules)
+ GET /users 200 in 112ms
+ GET /users 200 in 158ms
+ ✓ Compiled in 183ms (873 modules)
+ GET /users 200 in 161ms
+ ✓ Compiled in 187ms (873 modules)
+ GET /users 200 in 161ms
+ ✓ Compiled in 184ms (873 modules)
+ ✓ Compiled in 193ms (873 modules)
+ GET /users 200 in 165ms
+ GET /users 200 in 156ms
+ ✓ Compiled in 182ms (873 modules)
+ GET /users 200 in 33ms
+ ✓ Compiled in 1005ms (1917 modules)
+ GET /users 200 in 107ms
+ GET /users 200 in 72ms
+ ✓ Compiled in 652ms (1917 modules)
+ GET /users 200 in 84ms
+ ✓ Compiled in 701ms (1917 modules)
+ GET /users 200 in 63ms
+ GET /users 200 in 74ms
+ ✓ Compiled in 329ms (1917 modules)
+ GET /users 200 in 132ms
+ ✓ Compiled in 192ms (874 modules)

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Pencil, Plus, RotateCcw, Trash2, UserCog } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { GripHorizontal, Pencil, Plus, RotateCcw, Trash2, UserCog, X } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { roleLabel } from "@/lib/auth/auth-store";
 import type { User, UserRole } from "@/lib/auth/types";
@@ -27,6 +27,53 @@ export function UserManagementView() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
+  /** Panel offset from centered position (drag) */
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const dragRef = useRef<{
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+  } | null>(null);
+
+  const closeForm = useCallback(() => {
+    setShowForm(false);
+    setEditingId(null);
+    setForm(emptyForm);
+    setError("");
+    setOffset({ x: 0, y: 0 });
+  }, []);
+
+  useEffect(() => {
+    if (!showForm) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeForm();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showForm, closeForm]);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (!dragRef.current) return;
+      const dx = e.clientX - dragRef.current.startX;
+      const dy = e.clientY - dragRef.current.startY;
+      setOffset({
+        x: dragRef.current.originX + dx,
+        y: dragRef.current.originY + dy,
+      });
+    };
+    const onUp = () => {
+      dragRef.current = null;
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  }, []);
+
   if (!isAdmin) {
     return (
       <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
@@ -41,6 +88,7 @@ export function UserManagementView() {
     setEditingId(null);
     setForm(emptyForm);
     setError("");
+    setOffset({ x: 0, y: 0 });
     setShowForm(true);
   };
 
@@ -55,6 +103,7 @@ export function UserManagementView() {
       active: user.active,
     });
     setError("");
+    setOffset({ x: 0, y: 0 });
     setShowForm(true);
   };
 
@@ -79,9 +128,7 @@ export function UserManagementView() {
     }
 
     setMessage(editingId ? "User updated." : "New user added.");
-    setShowForm(false);
-    setForm(emptyForm);
-    setEditingId(null);
+    closeForm();
     setTimeout(() => setMessage(""), 3000);
   };
 
@@ -90,6 +137,16 @@ export function UserManagementView() {
     const result = removeUser(user.id);
     if (!result.ok) setError(result.error ?? "Failed to delete.");
     else setMessage("User deleted.");
+  };
+
+  const startDrag = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dragRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      originX: offset.x,
+      originY: offset.y,
+    };
   };
 
   return (
@@ -131,7 +188,7 @@ export function UserManagementView() {
         <p className="rounded-lg bg-danger/10 px-4 py-2 text-sm text-danger">{error}</p>
       )}
 
-      <div className="rounded-xl border border-border bg-surface overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-border bg-surface">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-surface-elevated">
@@ -196,12 +253,45 @@ export function UserManagementView() {
       </div>
 
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="w-full max-w-md rounded-2xl border border-border bg-surface p-6 shadow-2xl">
-            <h2 className="text-lg font-semibold text-text">
-              {editingId ? "Edit User" : "Add User"}
-            </h2>
-            <form onSubmit={handleSubmit} className="mt-4 space-y-3">
+        <div
+          className="modal-backdrop-in fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          onClick={closeForm}
+          role="presentation"
+        >
+          {/* Outer: drag position only — does not fight pop animation */}
+          <div
+            style={{ transform: `translate(${offset.x}px, ${offset.y}px)` }}
+            className="w-full max-w-md"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="user-form-title"
+              className="modal-pop-in w-full rounded-2xl border border-border bg-surface shadow-2xl"
+            >
+            {/* Drag handle */}
+            <div
+              onMouseDown={startDrag}
+              className="flex cursor-grab items-center justify-between border-b border-border px-4 py-3 active:cursor-grabbing"
+            >
+              <div className="flex items-center gap-2">
+                <GripHorizontal className="h-4 w-4 text-text-dim" />
+                <h2 id="user-form-title" className="text-lg font-semibold text-text">
+                  {editingId ? "Edit User" : "Add User"}
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={closeForm}
+                className="rounded-lg p-1.5 text-text-muted hover:bg-surface-elevated hover:text-text"
+                aria-label="Close"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-3 p-6 pt-4">
               {[
                 { key: "name", label: "Full Name", type: "text" },
                 { key: "username", label: "Username", type: "text" },
@@ -249,7 +339,7 @@ export function UserManagementView() {
               <div className="flex gap-2 pt-2">
                 <button
                   type="button"
-                  onClick={() => setShowForm(false)}
+                  onClick={closeForm}
                   className="flex-1 rounded-lg border border-border py-2 text-sm text-text-muted hover:text-text"
                 >
                   Cancel
@@ -262,6 +352,7 @@ export function UserManagementView() {
                 </button>
               </div>
             </form>
+            </div>
           </div>
         </div>
       )}

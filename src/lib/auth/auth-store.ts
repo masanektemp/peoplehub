@@ -8,6 +8,21 @@ function isBrowser() {
   return typeof window !== "undefined";
 }
 
+/** Add any DEFAULT_USERS missing from stored list (e.g. pilot terminal01–20) */
+function mergeSeedUsers(stored: User[]): User[] {
+  const byUsername = new Map(stored.map((u) => [u.username.toLowerCase(), u]));
+  let changed = false;
+  for (const seed of DEFAULT_USERS) {
+    const key = seed.username.toLowerCase();
+    if (!byUsername.has(key)) {
+      byUsername.set(key, seed);
+      changed = true;
+    }
+  }
+  if (!changed) return stored;
+  return Array.from(byUsername.values());
+}
+
 function readUsers(): User[] {
   if (!isBrowser()) return DEFAULT_USERS;
   const raw = localStorage.getItem(USERS_KEY);
@@ -16,7 +31,12 @@ function readUsers(): User[] {
     return DEFAULT_USERS;
   }
   try {
-    return JSON.parse(raw) as User[];
+    const parsed = JSON.parse(raw) as User[];
+    const merged = mergeSeedUsers(parsed);
+    if (merged.length !== parsed.length) {
+      localStorage.setItem(USERS_KEY, JSON.stringify(merged));
+    }
+    return merged;
   } catch {
     return DEFAULT_USERS;
   }
