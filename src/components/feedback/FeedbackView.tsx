@@ -35,9 +35,14 @@ function statusClass(s: FeedbackStatus) {
   return "bg-primary/15 text-primary";
 }
 
+/** Inbox only for master admin account — not terminal01–20 even if role=admin */
+function canOpenInbox(username: string | undefined) {
+  return (username || "").trim().toLowerCase() === "admin";
+}
+
 export function FeedbackView() {
-  const { session, isAdmin } = useAuth();
-  const canInbox = isAdmin || session?.role === "hr";
+  const { session } = useAuth();
+  const canInbox = canOpenInbox(session?.username);
   const [tab, setTab] = useState<"submit" | "inbox">("submit");
 
   const [category, setCategory] = useState("bug");
@@ -70,6 +75,10 @@ export function FeedbackView() {
       setLoadingList(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (tab === "inbox" && !canInbox) setTab("submit");
+  }, [tab, canInbox]);
 
   useEffect(() => {
     if (tab === "inbox" && canInbox) loadInbox();
@@ -185,7 +194,7 @@ export function FeedbackView() {
     <div className="space-y-5">
       <PageHeader
         title="UAT Feedback"
-        description="Send bugs, missing features, or comments with a screenshot. Admins can review live in the inbox."
+        description="Send bugs, missing features, or comments with a screenshot."
       />
 
       <div className="flex gap-2 border-b border-border pb-2">
