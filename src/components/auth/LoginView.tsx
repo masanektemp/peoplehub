@@ -57,19 +57,22 @@ export function LoginView() {
             <h1 className="text-xl font-semibold text-text">Sign In</h1>
             <p className="mt-1 text-sm text-text-muted">Enter your username and password</p>
 
-            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <form onSubmit={handleSubmit} className="mt-6 space-y-4" autoComplete="off">
               <div>
                 <label className="mb-1.5 block text-xs font-medium text-text-muted">Username</label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-dim" />
                   <input
                     type="text"
+                    name="ph-user"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder="Username"
                     className="h-11 w-full rounded-lg border border-border bg-background pl-10 pr-4 text-sm text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     required
-                    autoComplete="username"
+                    autoComplete="off"
+                    autoCapitalize="none"
+                    spellCheck={false}
                   />
                 </div>
               </div>
@@ -80,12 +83,13 @@ export function LoginView() {
                   <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-dim" />
                   <input
                     type={showPassword ? "text" : "password"}
+                    name="ph-pass"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
+                    placeholder="Password"
                     className="h-11 w-full rounded-lg border border-border bg-background pl-10 pr-10 text-sm text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     required
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                   />
                   <button
                     type="button"
