@@ -121,3 +121,35 @@ Status: LIVE Dinsanek
 [2] Direkod dalam CONTEXT-CURSOR.txt + .cursor/rules/docs-structure.mdc
 
 Status: SIAP
+--------------------------------------------------------------------------------
+17 Julai 2026 | sidebar + module routes + demo polish (kerja siap — tunggu feedback user)
+--------------------------------------------------------------------------------
+
+[1] Sidebar (semua kategori sama):
+    - Hover auto expand selepas 1.5s; leave → auto collapse
+    - Klik 1× semasa hover buka → pin buka (kekal; sessionStorage v3 — survive remount page)
+    - Klik tutup manual → tutup sementara; leave → auto normal balik
+    - Group page semasa (route) kekal buka (contoh /engagement → Additional buka)
+    - Fix: pin buka Finance kekal bila navigate Vehicle → Meeting Room dsb.
+
+[2] Buang catch-all src/app/[module]/ — ganti page statik per slug
+    + ModuleRoutePage.tsx (elak error vendor-chunks/lodash)
+
+[3] Deploy Vercel (push master):
+    - https://hr-msnc.vercel.app
+    - Commits: b357f45 (routes + sidebar), b09c307 (pin persist + 1.5s hover)
+
+[4] Status demo Stage 1: OK setakat ni — abang tunggu feedback user UAT
+
+Status: SIAP — pause coding; tunggu feedback user
+
+--------------------------------------------------------------------------------
+17 Julai 2026 | sync CF Dinsanek (kod sama local/Vercel)
+--------------------------------------------------------------------------------
+
+[1] wrangler whoami = dinsanek@gmail.com (bukan bobmpaj)
+[2] npm run deploy OK -> https://msnc-peoplehub.dinsanek.workers.dev
+[3] Version ID: dc4c8fb0-d8c1-40ce-83eb-a37f57a12fd9
+[4] Home + /engagement = 200
+
+Status: SIAP - local + Vercel + CF sync
