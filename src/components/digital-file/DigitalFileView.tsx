@@ -136,7 +136,7 @@ export function DigitalFileView() {
     "Medical",
     "Contract",
     "Document Versioning",
-  ].map((label) => ({ label }));
+  ].map((name) => ({ name }));
 
   return (
     <div className="space-y-6">
