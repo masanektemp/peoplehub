@@ -35,7 +35,11 @@ function statusClass(s: FeedbackStatus) {
   return "bg-primary/15 text-primary";
 }
 
-/** Inbox only for master admin account — not terminal01–20 even if role=admin */
+/**
+ * PILOT DEMO: inbox only for username "admin" (block terminal01–20 even if role=admin).
+ * TODO BEFORE OFFICIAL RELEASE: change to role-based — all users with role === "admin"
+ * must see Inbox (remove username-only check). See panduan/RANCANGAN-PHASE-2.txt
+ */
 function canOpenInbox(username: string | undefined) {
   return (username || "").trim().toLowerCase() === "admin";
 }

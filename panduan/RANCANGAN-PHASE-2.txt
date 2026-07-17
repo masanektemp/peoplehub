@@ -8,8 +8,25 @@ BACA INI BILA:
   • Nak mula Phase 2
   • Lupa apa yang perlu dibina selain DB
   • Customer tanya «boleh trace siapa buat apa?»
+  • SEBELUM OFFICIAL RELEASE — tengok §0
 
 Rujuk juga: PANDUAN-DEPLOY.txt, REKOD-BINCANG-DEPLOYMENT-UAT.txt
+
+================================================================================
+0. SEBELUM OFFICIAL RELEASE — FEEDBACK INBOX (PENTING)
+================================================================================
+
+  PILOT DEMO (sekarang):
+    • Tab Inbox Feedback: HANYA username "admin" (bukan terminal01–20)
+    • Fail: src/components/feedback/FeedbackView.tsx → canOpenInbox()
+
+  OFFICIAL RELEASE (wajib ubah balik):
+    • BUANG restriction username "admin" sahaja
+    • SEMUA user role === "admin" mesti boleh nampak Inbox
+    • Contoh: canOpenInbox = session.role === "admin"
+    • (Optional) HR role ikut keputusan abang nanti
+
+  Jangan lupa: terminal pilot admin role = demo only; production admin = role sebenar.
 
 ================================================================================
 1. SUSUNAN KERJA PHASE 2 (URUTAN)
