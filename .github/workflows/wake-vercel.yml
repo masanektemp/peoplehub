@@ -1,0 +1,27 @@
+# Once a day: hit Vercel so Hobby demo stays warm (less cold start).
+name: Wake Vercel
+
+on:
+  schedule:
+    # Once daily, 00:00 UTC (~8:00 AM Malaysia)
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Visit Vercel home
+        run: |
+          set -e
+          code=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 60 "https://hr-msnc.vercel.app/")
+          echo "GET / -> HTTP $code"
+          test "$code" = "200" -o "$code" = "307" -o "$code" = "308" -o "$code" = "302"
+
+      - name: Visit Vercel login
+        run: |
+          set -e
+          code=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 60 "https://hr-msnc.vercel.app/login")
+          echo "GET /login -> HTTP $code"
+          test "$code" = "200" -o "$code" = "307" -o "$code" = "308" -o "$code" = "302"
