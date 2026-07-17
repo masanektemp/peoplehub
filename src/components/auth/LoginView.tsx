@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { Eye, EyeOff, Loader2, Lock, User } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { DEMO_CREDENTIALS } from "@/lib/auth/default-users";
-import { roleLabel } from "@/lib/auth/auth-store";
 
 export function LoginView() {
   const { login } = useAuth();
@@ -21,12 +19,6 @@ export function LoginView() {
     const result = await login(username, password);
     if (!result.ok) setError(result.error ?? "Login failed.");
     setSubmitting(false);
-  };
-
-  const fillDemo = (u: string, p: string) => {
-    setUsername(u);
-    setPassword(p);
-    setError("");
   };
 
   return (
@@ -48,10 +40,10 @@ export function LoginView() {
         <div>
           <h2 className="text-3xl font-bold text-text">Enterprise HR System</h2>
           <p className="mt-2 max-w-md text-text-muted">
-            Mock login for development — easy to debug before connecting a real database.
+            Sign in with your account to access the HR dashboard and modules.
           </p>
         </div>
-        <p className="text-xs text-text-dim">© 2026 MSNC Group · On-premise ready</p>
+        <p className="text-xs text-text-dim">© 2026 MSNC Group</p>
       </div>
 
       <div className="flex flex-1 items-center justify-center p-6">
@@ -74,7 +66,7 @@ export function LoginView() {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder="admin / hr / staff"
+                    placeholder="Username"
                     className="h-11 w-full rounded-lg border border-border bg-background pl-10 pr-4 text-sm text-text focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     required
                     autoComplete="username"
@@ -119,25 +111,6 @@ export function LoginView() {
                 Sign In
               </button>
             </form>
-          </div>
-
-          <div className="mt-4 rounded-xl border border-border bg-surface/50 p-4">
-            <p className="mb-2 text-xs font-medium text-text-muted">Demo accounts (click to fill)</p>
-            <div className="space-y-1.5">
-              {DEMO_CREDENTIALS.map((cred) => (
-                <button
-                  key={cred.username}
-                  type="button"
-                  onClick={() => fillDemo(cred.username, cred.password)}
-                  className="flex w-full items-center justify-between rounded-lg border border-border bg-background px-3 py-2 text-left text-xs transition-colors hover:border-primary/50"
-                >
-                  <span className="font-medium text-text">{roleLabel(cred.role)}</span>
-                  <span className="text-text-dim">
-                    {cred.username} / {cred.password}
-                  </span>
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       </div>
