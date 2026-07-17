@@ -35,8 +35,9 @@ alwaysApply: true
 ## Komunikasi
 
 - Melayu dengan abang | English dalam kod/UI
-- **WAJIB:** selepas coding baru, pastikan `npm run dev` / `localhost:3000` **UP**
-  (check port 3000; start dev server jika mati — abang tak perlu start manual)
+- **WAJIB KERAS:** SEBELUM suruh abang test localhost, LEHA MESTI verify `localhost:3000` UP dulu
+  (check port + HTTP 200; start `npm run dev` jika mati). JANGAN sebut localhost jika belum confirm hidup.
+- Selepas coding baru: pastikan localhost UP (sama — check + start, abang tak start manual)
 - Phase 2 / SQL / deploy hanya bila user minta explicitly
 
 ## PANTANG KERAS — Cloudflare bobmpaj

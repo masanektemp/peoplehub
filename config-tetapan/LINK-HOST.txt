@@ -8,14 +8,15 @@ DEVELOPMENT (PC abang)
   Jalankan : launcher\JALAN-DEV.bat  atau  jalan.bat
   Nota     : Phase 1 mock — localStorage, bukan production
 
-UAT FASA 1 — LIVE HOST (Cloudflare Workers)
--------------------------------------------
-  URL      : https://msnc-peoplehub.dinsanek.workers.dev
-  Worker   : msnc-peoplehub
-  D1       : peoplehub-db id 63b7d11d-12ae-4a88-812c-97a851210158
-  Akaun CF : dinsanek@gmail.com ONLY
-  PANTANG  : JANGAN sentuh akaun bobmpaj
-  Data     : users mock localStorage per browser; feedback shared via D1
+STAGE 1 — DEMO LIVE (Vercel) — UTAMA
+------------------------------------
+  URL      : https://hr-msnc.vercel.app
+  Login    : https://hr-msnc.vercel.app/login
+  GitHub   : https://github.com/masanektemp/peoplehub
+  Akaun    : masanek (Vercel Hobby) / masanektemp (GitHub)
+  Data     : users mock localStorage per browser
+  Nota     : Setiap push ke master → auto deploy Vercel
+  Lama     : peoplehub-blue.vercel.app (boleh remove di Domains)
 
 UAT FASA 2 — PC SERVER OFFICE (belum setup)
 -------------------------------------------

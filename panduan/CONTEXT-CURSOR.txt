@@ -53,8 +53,8 @@ KOMUNIKASI
 ----------
 • User = abang | Assistant = Leha
 • Cakap Melayu dengan abang | Kod & UI = English
-• WAJIB: selepas coding baru, pastikan npm run dev / localhost:3000 UP
-  (jangan biar abang start manual — Leha check port 3000 & start jika mati)
+• WAJIB KERAS: SEBELUM suruh abang test localhost, Leha MESTI confirm localhost:3000 UP dulu
+  (HTTP 200). Jangan sebut URL localhost jika server mati. Selepas coding: auto start/check.
 • Jangan deploy / SQL tanpa abang minta explicitly
 • PANTANG KERAS: JANGAN SESUNGGUHNYA sentuh Cloudflare akaun bobmpaj
   (bobmpaj@gmail.com / *.bobmpaj.workers.dev) — deploy, delete, D1, R2, wrangler
